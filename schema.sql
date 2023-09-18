@@ -30,3 +30,21 @@ CREATE TABLE music_album (
 );
 
 ALTER TABLE item ADD CONSTRAINT unique_item UNIQUE (id);
+
+-- create table books
+
+CREATE TABLE books (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    publisher VARCHAR(255),
+    cover_state VARCHAR(255),
+    publish_date DATE,
+    FOREIGN KEY (id) REFERENCES items(id)
+);
+
+-- create table labels
+
+CREATE TABLE labels (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR(255),
+    color VARCHAR(255),
+)
