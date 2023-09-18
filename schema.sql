@@ -1,5 +1,5 @@
 -- create database cataglog
-CREATE DATABASE IF NOT EXISTS things_db;
+CREATE DATABASE IF NOT EXISTS catalog;
 
 -- Create the Genre table
 CREATE TABLE genre (
@@ -17,7 +17,7 @@ CREATE TABLE item (
     public_date DATE(255) NOT NULL,
     archived BOOLEAN(255) NOT NULL,
     can_be_archived BOOLEAN(255) NOT NULL,
-    genre_id INT REFERENCES genres(id)
+    genre_id INT REFERENCES genre(id)
 );
 
 -- create table music_album
@@ -26,24 +26,24 @@ CREATE TABLE music_album (
     id SERIAL PRIMARY KEY,
     can_be_archived BOOLEAN(255) NOT NULL,
     on_spotify BOOLEAN,
-    item_id INT REFERENCES items(id)
+    item_id INT REFERENCES item(id)
 );
 
 ALTER TABLE item ADD CONSTRAINT unique_item UNIQUE (id);
 
 -- create table books
 
-CREATE TABLE books (
+CREATE TABLE book (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     publisher VARCHAR(255),
     cover_state VARCHAR(255),
     publish_date DATE,
-    FOREIGN KEY (id) REFERENCES items(id)
+    FOREIGN KEY (id) REFERENCES item(id)
 );
 
 -- create table labels
 
-CREATE TABLE labels (
+CREATE TABLE label (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR(255),
     color VARCHAR(255),
@@ -51,19 +51,19 @@ CREATE TABLE labels (
 
 -- create table games
 
-CREATE TABLE games (
+CREATE TABLE game (
     id INT PRIMARY KEY,
     last_played_at TIMESTAMP,
     multiplayer BOOLEAN,
-    FOREIGN KEY (id) REFERENCES items(id)
+    FOREIGN KEY (id) REFERENCES item(id)
 );
 
 -- create table authors
 
-CREATE TABLE authors (
+CREATE TABLE author (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     item_id INT,
-    FOREIGN KEY (item_id) REFERENCES items(id)
+    FOREIGN KEY (item_id) REFERENCES item(id)
 );
