@@ -48,3 +48,12 @@ CREATE TABLE labels (
     title VARCHAR(255),
     color VARCHAR(255),
 )
+
+-- create table games
+
+CREATE TABLE games (
+    id INT PRIMARY KEY,
+    last_played_at TIMESTAMP,
+    multiplayer BOOLEAN,
+    FOREIGN KEY (id) REFERENCES items(id)
+);
