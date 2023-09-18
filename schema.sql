@@ -12,13 +12,19 @@ CREATE TABLE IF NOT EXISTS `catalog` (
 -- Create the Genre table
 CREATE TABLE genres (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    items VARCHAR(255) NOT NULL
 );
 
 -- Create the Item table
 CREATE TABLE items (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    source VARCHAR(255) NOT NULL,
+    label VARCHAR(255) NOT NULL,
+    public_date DATE(255) NOT NULL,
+    archived BOOLEAN(255) NOT NULL,
     genre_id INT REFERENCES genres(id)
 );
 
@@ -26,9 +32,7 @@ CREATE TABLE items (
 
 CREATE TABLE music_albums (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    artist VARCHAR(255),
-    release_year INT,
+    can_be_archived BOOLEAN(255) NOT NULL,
     on_spotify BOOLEAN,
     item_id INT REFERENCES items(id)
 );
