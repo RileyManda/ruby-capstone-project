@@ -57,3 +57,13 @@ CREATE TABLE games (
     multiplayer BOOLEAN,
     FOREIGN KEY (id) REFERENCES items(id)
 );
+
+-- create table authors
+
+CREATE TABLE authors (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    item_id INT,
+    FOREIGN KEY (item_id) REFERENCES items(id)
+);
