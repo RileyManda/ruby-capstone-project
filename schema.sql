@@ -15,6 +15,13 @@ CREATE TABLE genres (
     name VARCHAR(255) NOT NULL
 );
 
+-- Create the Item table
+CREATE TABLE items (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    genre_id INT REFERENCES genres(id)
+);
+
 -- create table music_albums
 
 CREATE TABLE music_albums (
@@ -25,3 +32,5 @@ CREATE TABLE music_albums (
     on_spotify BOOLEAN,
     item_id INT REFERENCES items(id)
 );
+
+ALTER TABLE items ADD CONSTRAINT unique_item UNIQUE (id);
