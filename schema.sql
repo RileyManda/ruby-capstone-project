@@ -9,6 +9,12 @@ CREATE TABLE IF NOT EXISTS `catalog` (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- Create the Genre table
+CREATE TABLE genres (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
 -- create table music_albums
 
 CREATE TABLE music_albums (
