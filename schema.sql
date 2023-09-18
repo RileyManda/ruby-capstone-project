@@ -1,5 +1,7 @@
 -- create database cataglog
+CREATE DATABASE IF NOT EXISTS things_db;
 
+-- create table catalog
 CREATE TABLE IF NOT EXISTS `catalog` (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
