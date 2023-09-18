@@ -13,11 +13,10 @@ CREATE TABLE IF NOT EXISTS `catalog` (
 CREATE TABLE genres (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    items VARCHAR(255) NOT NULL
 );
 
 -- Create the Item table
-CREATE TABLE items (
+CREATE TABLE item (
     id SERIAL PRIMARY KEY,
     genre VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
@@ -25,12 +24,13 @@ CREATE TABLE items (
     label VARCHAR(255) NOT NULL,
     public_date DATE(255) NOT NULL,
     archived BOOLEAN(255) NOT NULL,
+    can_be_archived BOOLEAN(255) NOT NULL,
     genre_id INT REFERENCES genres(id)
 );
 
--- create table music_albums
+-- create table music_album
 
-CREATE TABLE music_albums (
+CREATE TABLE music_album (
     id SERIAL PRIMARY KEY,
     can_be_archived BOOLEAN(255) NOT NULL,
     on_spotify BOOLEAN,
