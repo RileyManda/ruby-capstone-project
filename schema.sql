@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS things_db;
 
 -- Create the Genre table
-CREATE TABLE genres (
+CREATE TABLE genre (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
 );
@@ -29,4 +29,4 @@ CREATE TABLE music_album (
     item_id INT REFERENCES items(id)
 );
 
-ALTER TABLE items ADD CONSTRAINT unique_item UNIQUE (id);
+ALTER TABLE item ADD CONSTRAINT unique_item UNIQUE (id);
