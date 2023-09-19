@@ -1,5 +1,4 @@
 class Item
-
   attr_accessor :id, :genre, :author, :source, :label, :public_date, :archived, :can_be_archived, :genre_id
 
   def initialize(options = {})
