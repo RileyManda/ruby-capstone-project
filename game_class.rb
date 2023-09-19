@@ -1,17 +1,16 @@
-class Game
-  attr_accessor :title, :description, :created_at, :last_played_at
+class Game < Item
+  attr_accessor :last_played_at
 
   def initialize(title, description, last_played_at)
-    @title = title
-    @description = description
-    @created_at = Time.now
+    super(title, description)
     @last_played_at = last_played_at
   end
 
+  # Implement the can_be_archived? method
   def can_be_archived?
     parent_can_be_archived = super
     return false unless parent_can_be_archived
-    return false unless Time.now - @last_played_at > 2 * 365 * 24 * 60 * 60
+    return false unless Time.now - @last_played_at > 2 * 365 * 24 * 60 * 60 # 2 years in seconds
 
     true
   end
