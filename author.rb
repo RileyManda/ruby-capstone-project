@@ -6,7 +6,7 @@ class Author
     @items = []
   end
 
-  # Implement the add_item method
+  # add_item method
   def add_item(item)
     @items << item
     item.author = self
