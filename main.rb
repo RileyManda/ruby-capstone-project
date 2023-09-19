@@ -142,7 +142,8 @@ loop do
   end
 
   def display_book(index, book)
-    puts "#{index}. Book - Publisher: #{book.publisher || 'No Publisher'} - Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
+    puts "#{index}. Book - Publisher: #{book.publisher || 'No Publisher'} - " \
+         "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
   end
 
   def display_music_album(index, album)
