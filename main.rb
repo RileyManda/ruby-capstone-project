@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 require 'date'
 require_relative 'item'
 require_relative 'author'
@@ -19,7 +18,7 @@ end
 
 #  store your item
 items = []
-
+# rubocop:disable Metrics/BlockLength
 loop do
   display_options
   print 'Select an option: '
@@ -88,11 +87,15 @@ loop do
   def display_item(index, item)
     case item
     when MusicAlbum
-      puts "#{index}. Music Album - #{item.album_name || 'No Album Name'}"
+      puts "#{index}. Music Album - Album Name: #{item.album_name || 'No Album Name'} | " \
+           "Can Be Archived: #{item.can_be_archived? ? 'Yes' : 'No'} | " \
+           "On Spotify: #{item.on_spotify ? 'Yes' : 'No'}"
     when Book
       puts "#{index}. Book - #{book_info(item)}"
     when Game
-      puts "#{index}. Game: - #{item.title} | Description: -#{item.description} | Last Played: - #{item.last_played_at}"
+      puts "#{index}. Game - Title: #{item.title} | " \
+           "Description: #{item.description} | " \
+           "Last Played: #{item.last_played_at}"
     else
       puts "#{index}. #{item.class} - No Title"
     end
