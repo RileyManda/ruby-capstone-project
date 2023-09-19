@@ -11,8 +11,9 @@ def display_options
   puts 'Options:'
   puts '1. Add a new book'
   puts '2. Add a new game'
-  puts '3. List all items'
-  puts '4. Quit'
+  puts '3. Add a new music album'
+  puts '4. List all items'
+  puts '5. Quit'
 end
 
 #  store your item
@@ -53,20 +54,34 @@ loop do
     description = gets.chomp
     print 'Enter last played date (YYYY-MM-DD): '
     last_played_at = Date.parse(gets.chomp)
-
     game = Game.new(title, description, last_played_at)
     items << game
-
     puts 'Game added successfully.'
 
-  when 3
+when 3
+    # Add a new music album
+    puts 'Adding a new music album...'
+    print 'Enter album name: '
+    album_name = gets.chomp
+    print 'Is the album on Spotify? (true or false): '
+    on_spotify = gets.chomp.downcase == 'true'
+    print 'Can the album be archived? (true or false): '
+    can_be_archived = gets.chomp.downcase == 'true'
+    print 'Enter item ID: '
+    item_id = gets.chomp.to_i
+
+    music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, item_id)
+    items << music_album
+
+    puts 'Music album added successfully.'
+  when 4
     # List all items
     puts 'Listing all items:'
     items.each_with_index do |item, index|
       puts "#{index + 1}. #{item.class} - #{item.title || 'No Title'}"
     end
 
-  when 4
+  when 5
     # Exit/quit the app
     puts 'Exiting the app. Goodbye!'
     break
