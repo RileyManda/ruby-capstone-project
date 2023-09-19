@@ -29,6 +29,7 @@ class App
     puts '6. List all books'
     puts '7. List all games'
     puts '8. List genres'
-    puts '9. Quit'
+    puts '9. List authors'
+    puts '10. Quit'
   end
 end

@@ -16,18 +16,24 @@ books = []
 music_albums = []
 games = []
 genres = []
+# labels = []
+authors = []
 
-def add_book(books, items)
+def add_book(books, items, authors)
   puts 'Adding a new book...'
   print "Enter author's name: "
   author_name = gets.chomp
+  author = authors.find { |a| a.name == author_name }
+  unless author
+    author = Author.new(author_name)
+    authors << author
+  end
   print 'Enter publisher: '
   publisher = gets.chomp
   print 'Enter cover state (true or false): '
   cover_state = gets.chomp.downcase == 'true'
   print 'Enter publish date (YYYY-MM-DD): '
   publish_date = Date.parse(gets.chomp)
-  author = Author.new(author_name)
   book = Book.new(author, publisher, cover_state, publish_date)
   items << book
   books << book
@@ -104,6 +110,13 @@ def list_genres(genres)
   end
 end
 
+def list_authors(authors)
+  puts 'Listing all authors:'
+  authors.each do |author|
+    puts author.name
+  end
+end
+
 def display_item(index, item)
   case item
   when MusicAlbum
@@ -111,7 +124,7 @@ def display_item(index, item)
          "Can Be Archived: #{item.can_be_archived? ? 'Yes' : 'No'} | " \
          "On Spotify: #{item.on_spotify ? 'Yes' : 'No'}"
   when Book
-    puts "#{index}. Book - #{book_info(item)}"
+    puts "#{index}. Book - #{book_info(item) || 'No Book Info'}"
   when Game
     puts "#{index}. Game - Title: #{item.title} | " \
          "Description: #{item.description} | " \
@@ -149,7 +162,7 @@ loop do
 
   case choice
   when 1
-    add_book(books, items)
+    add_book(books, items, authors)
   when 2
     add_game(games, items)
   when 3
@@ -165,6 +178,8 @@ loop do
   when 8
     list_genres(genres)
   when 9
+    list_authors(authors)
+  when 10
     puts 'Exiting the app. Goodbye!'
     break
   else
