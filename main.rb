@@ -1,3 +1,4 @@
+require 'date'
 require_relative 'item'
 require_relative 'author'
 require_relative 'book'
@@ -37,7 +38,6 @@ loop do
     cover_state = gets.chomp.downcase == 'true'
     print 'Enter publish date (YYYY-MM-DD): '
     publish_date = Date.parse(gets.chomp)
-
     author = Author.new(author_name)
     book = Book.new(author, publisher, cover_state, publish_date)
     items << book
