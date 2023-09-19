@@ -58,7 +58,7 @@ loop do
     items << game
     puts 'Game added successfully.'
 
-when 3
+  when 3
     # Add a new music album
     puts 'Adding a new music album...'
     print 'Enter album name: '
@@ -67,10 +67,8 @@ when 3
     on_spotify = gets.chomp.downcase == 'true'
     print 'Can the album be archived? (true or false): '
     can_be_archived = gets.chomp.downcase == 'true'
-    print 'Enter item ID: '
-    item_id = gets.chomp.to_i
 
-    music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, item_id)
+    music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify)
     items << music_album
 
     puts 'Music album added successfully.'
@@ -78,7 +76,15 @@ when 3
     # List all items
     puts 'Listing all items:'
     items.each_with_index do |item, index|
-      puts "#{index + 1}. #{item.class} - #{item.title || 'No Title'}"
+      if item.is_a?(MusicAlbum)
+        puts "#{index + 1}. Music Album - #{item.album_name || 'No Album Name'}"
+      elsif item.is_a?(Book)
+        puts "#{index + 1}. Book - #{item.title || 'No Title'}"
+      elsif item.is_a?(Game)
+        puts "#{index + 1}. Game - #{item.title || 'No Title'}"
+      else
+        puts "#{index + 1}. #{item.class} - No Title"
+      end
     end
 
   when 5
