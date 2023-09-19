@@ -10,9 +10,9 @@ class Book
 
   def can_be_archived?
     if @cover_state || super == 'bad'
-      true
-    else
       false
+    else
+      true
     end
   end
 end
