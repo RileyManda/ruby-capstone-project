@@ -118,20 +118,38 @@ def list_authors(authors)
 end
 
 def display_item(index, item)
+  puts "#{index}. #{item.class} -"
+  display_item_details(item)
+end
+
+def display_item_details(item)
   case item
   when MusicAlbum
-    puts "#{index}. Music Album - Album Name: #{item.album_name || 'No Album Name'} | " \
-         "Can Be Archived: #{item.can_be_archived? ? 'Yes' : 'No'} | " \
-         "On Spotify: #{item.on_spotify ? 'Yes' : 'No'}"
+    display_music_album_details(item)
   when Book
-    puts "#{index}. Book - #{book_info(item) || 'No Book Info'}"
+    display_book_details(item)
   when Game
-    puts "#{index}. Game - Title: #{item.title} | " \
-         "Description: #{item.description} | " \
-         "Last Played: #{item.last_played_at}"
+    display_game_details(item)
   else
-    puts "#{index}. #{item.class} - No Title"
+    puts 'No additional information available.'
   end
+end
+
+def display_music_album_details(album)
+  puts "Album Name: #{album.album_name || 'No Album Name'}"
+  puts "Can Be Archived: #{album.can_be_archived? ? 'Yes' : 'No'}"
+  puts "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
+end
+
+def display_book_details(book)
+  puts "Publisher: #{book.publisher || 'No Publisher'}"
+  puts "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
+end
+
+def display_game_details(game)
+  puts "Title: #{game.title}"
+  puts "Description: #{game.description}"
+  puts "Last Played: #{game.last_played_at}"
 end
 
 def book_info(book)
