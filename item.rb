@@ -14,6 +14,7 @@ class Item
   end
 
   def can_be_archived?
-    @can_be_archived
+    ten_years_ago = Date.today - (10 * 365)
+    @public_date <= ten_years_ago && @can_be_archived
   end
 end
