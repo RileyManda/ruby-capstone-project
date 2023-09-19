@@ -15,6 +15,7 @@ items = []
 books = []
 music_albums = []
 games = []
+genres = []
 
 def add_book(books, items)
   puts 'Adding a new book...'
@@ -47,7 +48,7 @@ def add_game(games, items)
   puts 'Game added successfully.'
 end
 
-def add_music_album(music_albums, items)
+def add_music_album(music_albums, items, genres)
   puts 'Adding a new music album...'
   print 'Enter album name: '
   album_name = gets.chomp
@@ -55,7 +56,14 @@ def add_music_album(music_albums, items)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-  music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify)
+  print 'Enter genre: '
+  genre_name = gets.chomp.capitalize
+  genre = genres.find { |g| g.name == genre_name }
+  if genre.nil?
+    genre = Genre.new(genres.size + 1, genre_name)
+    genres << genre
+  end
+  music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
   items << music_album
   music_albums << music_album
   puts 'Music album added successfully.'
@@ -86,6 +94,13 @@ def list_all_games(games)
   puts 'Listing all games:'
   games.each_with_index do |game, index|
     display_game(index + 1, game)
+  end
+end
+
+def list_genres(genres)
+  puts 'Listing all genres:'
+  genres.each do |genre|
+    puts genre.name
   end
 end
 
@@ -138,7 +153,7 @@ loop do
   when 2
     add_game(games, items)
   when 3
-    add_music_album(music_albums, items)
+    add_music_album(music_albums, items, genres)
   when 4
     list_all_items(items)
   when 5
@@ -148,6 +163,8 @@ loop do
   when 7
     list_all_games(games)
   when 8
+    list_genres(genres)
+  when 9
     puts 'Exiting the app. Goodbye!'
     break
   else
