@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'date'
 require_relative 'item'
 require_relative 'author'
@@ -38,8 +39,8 @@ loop do
     author = Author.new(author_name)
     book = Book.new(author, publisher, cover_state, publish_date)
     items << book
-
     puts 'Book added successfully.'
+
   when 2
     puts 'Adding a new game...'
     print 'Enter title: '
@@ -67,20 +68,7 @@ loop do
     puts 'Music album added successfully.'
 
   when 4
-    # List all items
-    puts 'Listing all items:'
-    items.each_with_index do |item, index|
-      case item
-      when MusicAlbum
-        puts "#{index + 1}. Music Album - #{item.album_name || 'No Album Name'}"
-      when Book
-        puts "#{index + 1}. Book - Publisher: #{item.publisher || 'No Publisher'} - Cover State: #{item.cover_state ? 'Good' : 'Bad'}"
-      when Game
-        puts "#{index + 1}. Game - #{item.title || 'No Title'}"
-      else
-        puts "#{index + 1}. #{item.class} - No Title"
-      end
-    end
+    list_all_items(items)
 
   when 5
     puts 'Exiting the app. Goodbye!'
@@ -89,4 +77,29 @@ loop do
   else
     puts 'Invalid choice. Please select a valid option.'
   end
+
+  def list_all_items(items)
+    puts 'Listing all items:'
+    items.each_with_index do |item, index|
+      display_item(index + 1, item)
+    end
+  end
+
+  def display_item(index, item)
+    case item
+    when MusicAlbum
+      puts "#{index}. Music Album - #{item.album_name || 'No Album Name'}"
+    when Book
+      puts "#{index}. Book - #{book_info(item)}"
+    when Game
+      puts "#{index}. Game - #{item.title || 'No Title'}"
+    else
+      puts "#{index}. #{item.class} - No Title"
+    end
+  end
+
+  def book_info(book)
+    "Publisher: #{book.publisher || 'No Publisher'} - Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
+  end
 end
+# rubocop:enable Metrics/BlockLength
