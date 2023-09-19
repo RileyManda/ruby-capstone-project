@@ -1,20 +1,38 @@
-class Item
-  attr_accessor :id, :genre, :author, :source, :label, :public_date, :archived, :can_be_archived, :genre_id
+class Book
+  attr_accessor :title, :author_name, :publisher
 
-  def initialize(options = {})
-    @id = options[:id]
-    @genre = options[:genre]
-    @author = options[:author]
-    @source = options[:source]
-    @label = options[:label]
-    @public_date = options[:public_date]
-    @archived = options[:archived]
-    @can_be_archived = options[:can_be_archived]
-    @genre_id = options[:genre_id]
+  def initialize(title, author_name, publisher)
+    @title = title
+    @author_name = author_name
+    @publisher = publisher
   end
+end
 
-  def can_be_archived?
-    ten_years_ago = Date.today - (10 * 365)
-    @public_date <= ten_years_ago && @can_be_archived
+class MusicAlbum
+  attr_accessor :album_name, :on_spotify
+
+  def initialize(album_name, on_spotify)
+    @album_name = album_name
+    @on_spotify = on_spotify
+  end
+end
+
+class Movie
+  attr_accessor :title, :director, :release_year
+
+  def initialize(title, director, release_year)
+    @title = title
+    @director = director
+    @release_year = release_year
+  end
+end
+
+class Game
+  attr_accessor :title, :description, :last_played_at
+
+  def initialize(title, description, last_played_at)
+    @title = title
+    @description = description
+    @last_played_at = last_played_at
   end
 end
