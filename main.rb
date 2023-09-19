@@ -92,7 +92,7 @@ loop do
     when Book
       puts "#{index}. Book - #{book_info(item)}"
     when Game
-      puts "#{index}. Game - #{item.title || 'No Title'}"
+      puts "#{index}. Game: - #{item.title} | Description: -#{item.description} | Last Played: - #{item.last_played_at}"
     else
       puts "#{index}. #{item.class} - No Title"
     end
