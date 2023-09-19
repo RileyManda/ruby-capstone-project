@@ -29,21 +29,21 @@ loop do
 
   case choice
   when 1
-    # Add a new book
-    puts 'Adding a new book...'
-    print "Enter author's name: "
-    author_name = gets.chomp
-    print 'Enter publisher: '
-    publisher = gets.chomp
-    print 'Enter cover state (true or false): '
-    cover_state = gets.chomp.downcase == 'true'
-    print 'Enter publish date (YYYY-MM-DD): '
-    publish_date = Date.parse(gets.chomp)
-    author = Author.new(author_name)
-    book = Book.new(author, publisher, cover_state, publish_date)
-    items << book
+  # Add a new book
+  puts 'Adding a new book...'
+  print "Enter author's name: "
+  author_name = gets.chomp
+  print 'Enter publisher: '
+  publisher = gets.chomp
+  print 'Enter cover state (true or false): '
+  cover_state = gets.chomp.downcase == 'true'
+  print 'Enter publish date (YYYY-MM-DD): '
+  publish_date = Date.parse(gets.chomp)
+  author = Author.new(author_name)
+  book = Book.new(author, publisher, cover_state, publish_date)
+  items << book
 
-    puts 'Book added successfully.'
+  puts 'Book added successfully.'
 
   when 2
     #  Add a new game
@@ -67,28 +67,27 @@ loop do
     on_spotify = gets.chomp.downcase == 'true'
     print 'Can the album be archived? (true or false): '
     can_be_archived = gets.chomp.downcase == 'true'
-
     music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify)
     items << music_album
-
     puts 'Music album added successfully.'
-  when 4
-    # List all items
-    puts 'Listing all items:'
-    items.each_with_index do |item, index|
-      if item.is_a?(MusicAlbum)
-        puts "#{index + 1}. Music Album - #{item.album_name || 'No Album Name'}"
-      elsif item.is_a?(Book)
-        puts "#{index + 1}. Book - #{item.title || 'No Title'}"
-      elsif item.is_a?(Game)
-        puts "#{index + 1}. Game - #{item.title || 'No Title'}"
-      else
-        puts "#{index + 1}. #{item.class} - No Title"
-      end
+ when 4
+  # List all items
+  puts 'Listing all items:'
+  items.each_with_index do |item, index|
+    case item
+    when MusicAlbum
+      puts "#{index + 1}. Music Album - #{item.album_name || 'No Album Name'}"
+    when Book
+      puts "#{index + 1}. Book - Publisher: #{item.publisher || 'No Publisher'} - Cover State: #{item.cover_state ? 'Good' : 'Bad'}"
+    when Game
+      puts "#{index + 1}. Game - #{item.title || 'No Title'}"
+    else
+      puts "#{index + 1}. #{item.class} - No Title"
     end
+  end
+
 
   when 5
-    # Exit/quit the app
     puts 'Exiting the app. Goodbye!'
     break
 
