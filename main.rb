@@ -26,8 +26,17 @@ genres_reader = ReadFile.new('genre.json')
 
 music_albums_writer = WriteFile.new('music_album.json')
 music_albums_reader = ReadFile.new('music_album.json')
+
+
 genres = genres_reader.read
 music_albums = music_albums_reader.read
+if genres.empty?
+  puts 'No genres found in genre.json. You can add genres using the app.'
+end
+
+if music_albums.empty?
+  puts 'No music albums found in music_album.json. You can add music albums using the app.'
+end
 # adding book and label methods [START]...............................
 def add_book(books, items, authors, labels)
   author = find_or_create_author(authors)
@@ -108,20 +117,20 @@ def add_music_album(music_albums, items, genres)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-
-  genre = genres.find { |g| g.name == genre_name }
-
-  unless genre
-    genre = Genre.new(genres.size + 1, genre_name)
-    genres << genre
-    save_genres(genres)
-  end
-
+  genre = Genre.new(genres.size + 1, genre_name)
+  id = generate_unique_id(music_albums)
   music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
   items << music_album
-  music_albums << music_album
+  music_albums << { 'id' => id, 'album' => music_album }
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
+end
+
+def generate_unique_id(music_albums)
+  loop do
+    id = Random.rand(1..1000)
+    return id unless music_albums.any? { |album| album['id'] == id }
+  end
 end
 
 # adding music_album   [END]......................
@@ -246,10 +255,12 @@ def load_music_albums
     json_data = File.read('music_album.json')
     return [] if json_data.strip.empty?
     JSON.parse(json_data).map do |album_data|
-      album_name = album_data['album_name']
-      can_be_archived = album_data['can_be_archived']
-      on_spotify = album_data['on_spotify']
-      genre_name = album_data['genre_name']
+      id = album_data['id']
+      album = album_data['album']
+      album_name = album['album_name']
+      can_be_archived = album['can_be_archived']
+      on_spotify = album['on_spotify']
+      genre_name = album['genre']['name']
       genre = genres.find { |g| g.name == genre_name }
       unless genre
         genre = Genre.new(genres.size + 1, genre_name)
@@ -265,14 +276,16 @@ rescue JSON::ParserError => e
   []
 end
 
+# save music albums
 def save_music_albums(music_albums)
-  data_to_save = music_albums.map do |album|
+  data_to_save = music_albums.map do |entry|
+    album = entry['album']
     {
-      'id' => album.id.to_s,
-      'album_name' => album.album_name,
+      'id' => entry['id'],
+      'album_name' => album.album_name || 'No Album Name',
       'can_be_archived' => album.can_be_archived?,
       'on_spotify' => album.on_spotify,
-      'genre_name' => album.genre.name
+      'genre_name' => album.genre.name || 'No Genre'
     }
   end
 
@@ -280,6 +293,7 @@ def save_music_albums(music_albums)
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'music_album.json': #{e.message}"
 end
+
 
 # save genres
 def save_genres(genres)
@@ -325,12 +339,13 @@ loop do
     list_labels(labels)
   when 11
     puts 'Exiting the app. Goodbye!'
-    music_albums_writer.write(music_albums)
-    genres_writer.write(genres)
+    save_genres(genres)
+    save_music_albums(music_albums)
     break
   else
     puts 'Invalid choice. Please select a valid option.'
   end
 end
-music_albums = load_music_albums
-# genres = load_genres
+# Load genres and albums from JSON files
+genres = genres_reader.read
+music_albums = music_albums_reader.read
