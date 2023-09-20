@@ -7,8 +7,12 @@ require_relative 'genre'
 require_relative 'label'
 require_relative 'music_album'
 require_relative 'app'
+require_relative 'data_operation'
 
 app = App.new
+
+include SaveData
+include LoadData
 
 # Store your items
 items = []
