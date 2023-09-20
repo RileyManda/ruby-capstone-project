@@ -34,12 +34,12 @@ def add_book(books, items, authors, labels)
   cover_state = gets.chomp.downcase == 'true'
   print 'Enter publish date (YYYY-MM-DD): '
   publish_date = Date.parse(gets.chomp)
-  print "Enter label: "
+  print 'Enter label: '
   title = gets.chomp
-  print "Enter color: "
+  print 'Enter color: '
   color = gets.chomp
-  label = labels.find { |b| b.title == title && b.color == color}
-  label = Label.new(title, color)
+  label = labels.find { |b| b.title == title && b.color == color }
+  label ||= Label.new(title, color)
   book = Book.new(author, publisher, cover_state, publish_date, label)
   items << book
   books << book
@@ -72,7 +72,7 @@ def add_music_album(music_albums, items, genres)
   print 'Enter genre: '
   genre_name = gets.chomp.capitalize
   genre = genres.find { |g| g.name == genre_name }
-  if genre.nil?
+  unless genre
     genre = Genre.new(genres.size + 1, genre_name)
     genres << genre
   end
@@ -128,7 +128,7 @@ def list_labels(labels)
   puts 'Listing all labels:'
   labels.each do |label|
     puts label.title
-    # puts label.color
+    puts label.color
   end
 end
 
@@ -165,27 +165,6 @@ def display_game_details(game)
   puts "Title: #{game.title}"
   puts "Description: #{game.description}"
   puts "Last Played: #{game.last_played_at}"
-end
-
-def book_info(book)
-  "Publisher: #{book.publisher || 'No Publisher'} - Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
-end
-
-def display_book(index, book)
-  puts "#{index}. Book - Publisher: #{book.publisher || 'No Publisher'} - " \
-       "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
-end
-
-def display_music_album(index, album)
-  puts "#{index}. Music Album - Album Name: #{album.album_name || 'No Album Name'} | " \
-       "Can Be Archived: #{album.can_be_archived? ? 'Yes' : 'No'} | " \
-       "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
-end
-
-def display_game(index, game)
-  puts "#{index}. Game - Title: #{game.title} | " \
-       "Description: #{game.description} | " \
-       "Last Played: #{game.last_played_at}"
 end
 
 loop do
