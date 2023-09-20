@@ -189,10 +189,16 @@ def display_item_details(item)
   end
 end
 
+def display_music_album(index, album)
+  puts "#{index}. Music Album -"
+  display_music_album_details(album)
+end
+
 def display_music_album_details(album)
   puts "Album Name: #{album.album_name || 'No Album Name'}"
   puts "Can Be Archived: #{album.can_be_archived? ? 'Yes' : 'No'}"
   puts "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
+  puts "Genre: #{album.genre.name || 'No Genre'}"
 end
 
 def display_book_details(book, label)
