@@ -16,10 +16,10 @@ books = []
 music_albums = []
 games = []
 genres = []
-# labels = []
+labels = []
 authors = []
 
-def add_book(books, items, authors)
+def add_book(books, items, authors, labels)
   puts 'Adding a new book...'
   print "Enter author's name: "
   author_name = gets.chomp
@@ -28,15 +28,22 @@ def add_book(books, items, authors)
     author = Author.new(author_name)
     authors << author
   end
+  print "Enter label"
+  title = gets.chomp
+  print "Enter color"
+  color = gets.chomp
+  label = labels.find { |b| b.title == title && b.color == color}
+  label = Label.new(title, color)
   print 'Enter publisher: '
   publisher = gets.chomp
   print 'Enter cover state (true or false): '
   cover_state = gets.chomp.downcase == 'true'
   print 'Enter publish date (YYYY-MM-DD): '
   publish_date = Date.parse(gets.chomp)
-  book = Book.new(author, publisher, cover_state, publish_date)
+  book = Book.new(author, publisher, cover_state, publish_date, label)
   items << book
   books << book
+  labels << label
   puts 'Book added successfully.'
 end
 
@@ -117,6 +124,14 @@ def list_authors(authors)
   end
 end
 
+def list_labels(labels)
+  puts 'Listing all labels:'
+  labels.each do |label|
+    puts label.title
+    # puts label.color
+  end
+end
+
 def display_item(index, item)
   puts "#{index}. #{item.class} -"
   display_item_details(item)
@@ -180,7 +195,7 @@ loop do
 
   case choice
   when 1
-    add_book(books, items, authors)
+    add_book(books, items, authors, labels)
   when 2
     add_game(games, items)
   when 3
@@ -198,6 +213,8 @@ loop do
   when 9
     list_authors(authors)
   when 10
+    list_labels(labels)
+  when 11
     puts 'Exiting the app. Goodbye!'
     break
   else
