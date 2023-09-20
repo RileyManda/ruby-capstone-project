@@ -117,21 +117,19 @@ def add_music_album(music_albums, items, genres)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-  genre = genres.find { |g| g.name == genre_name }
+  genre = genres.find { |g| g.genre_name == genre_name }
   unless genre
     genre = Genre.new(genres.size + 1, genre_name)
     genres << genre
   end
 
-  id = generate_unique_id(music_albums)
   music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
   items << music_album
-  music_albums << music_album  # Store the music_album object, not a hash
+  music_albums << music_album
   save_music_albums(music_albums)
   save_genres(genres)
   puts 'Music album added successfully.'
 end
-
 
 
 def generate_unique_id(music_albums)
@@ -258,13 +256,14 @@ end
 
 # Display methods  [ END]......................
 # load and save data to json file [START]......
-def load_music_albums
+def load_music_albums(genres)
   if File.exist?('music_album.json')
     json_data = File.read('music_album.json')
     return [] if json_data.strip.empty?
+
     JSON.parse(json_data).map do |album_data|
-      id = album_data['id']
       album = album_data['album']
+      id = album_data['id']
       album_name = album['album_name']
       can_be_archived = album['can_be_archived']
       on_spotify = album['on_spotify']
@@ -274,7 +273,8 @@ def load_music_albums
         genre = Genre.new(genres.size + 1, genre_name)
         genres << genre
       end
-      MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
+
+      MusicAlbum.new(id, album_name, can_be_archived, on_spotify, genre)
     end
   else
     []
@@ -284,8 +284,6 @@ rescue JSON::ParserError => e
   []
 end
 
-# save music albums
-# save music albums
 # save music albums
 def save_music_albums(music_albums)
   data_to_save = music_albums.map do |music_album|
