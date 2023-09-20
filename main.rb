@@ -214,6 +214,11 @@ def display_book_details(book, label)
   end
 end
 
+def display_game(index, game)
+  puts "#{index}. Game -"
+  display_game_details(game)
+end
+
 def display_game_details(game)
   puts "Title: #{game.title}"
   puts "Description: #{game.description}"
