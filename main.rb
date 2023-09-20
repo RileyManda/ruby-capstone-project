@@ -108,22 +108,21 @@ def add_music_album(music_albums, items, genres)
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
 
-  genres = load_genres
-
+  # Find the genre or create a new one
   genre = genres.find { |g| g.name == genre_name }
-  unless genre
+  if genre.nil?
     genre = Genre.new(genres.size + 1, genre_name)
     genres << genre
     save_genres(genres)
   end
 
-  music_album = MusicAlbum.new(music_albums.size + 1,album_name, can_be_archived, on_spotify, genre)
-  items << music_album
+  # Create a new music album with a unique ID
+  music_album = MusicAlbum.new(nil, album_name, can_be_archived, on_spotify, genre)
   music_albums << music_album
+
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
 end
-
 
 # adding music_album   [END]......................
 
@@ -273,6 +272,16 @@ end
 
 # save music albums
 def save_music_albums(music_albums)
+  # Find the maximum existing ID in the music_albums array
+  max_id = music_albums.map { |album| album.id}.max || 0
+
+  # Assign new IDs to albums that don't have one
+  music_albums.each do |music_album|
+    music_album.id ||= max_id + 1
+    max_id = music_album.id if music_album.id > max_id
+  end
+
+  # Prepare data to save
   data_to_save = music_albums.map do |music_album|
     {
       'id' => music_album.id,
@@ -287,6 +296,7 @@ def save_music_albums(music_albums)
     }
   end
 
+  # Save the data to the JSON file
   File.write('music_album.json', JSON.pretty_generate(data_to_save))
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'music_album.json': #{e.message}"
@@ -361,8 +371,6 @@ loop do
     list_labels(labels)
   when 11
     puts 'Exiting the app. Goodbye!'
-    save_genres(genres)
-    save_music_albums(music_albums)
     break
   else
     puts 'Invalid choice. Please select a valid option.'
