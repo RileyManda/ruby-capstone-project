@@ -1,5 +1,5 @@
 class Item
-  attr_accessor :id, :genre, :author, :source, :label, :public_date, :archived, :can_be_archived, :genre_id
+  attr_accessor :id, :genre, :author, :source, :label, :publish_date, :archived, :can_be_archived, :genre_id
 
   def initialize(options = {})
     @id = options[:id]
@@ -7,7 +7,7 @@ class Item
     @author = options[:author]
     @source = options[:source]
     @label = options[:label]
-    @public_date = options[:public_date]
+    @publish_date = options[:publish_date]
     @archived = options[:archived]
     @can_be_archived = options[:can_be_archived]
     @genre_id = options[:genre_id]
@@ -15,6 +15,6 @@ class Item
 
   def can_be_archived?
     ten_years_ago = Date.today - (10 * 365)
-    @public_date <= ten_years_ago && @can_be_archived
+    @publish_date <= ten_years_ago && @can_be_archived
   end
 end

@@ -17,6 +17,7 @@ class App
     @labels = []
     @authors = []
     @sources = []
+    @labels = []
   end
 
   def display_options
@@ -30,7 +31,7 @@ class App
     puts '7. List of games'
     puts '8. List all genres (e.g Comedy, Thriller)'
     puts '9. List all authors (e.g. Stephen King)'
-    # puts '9. List all labels (e.g. 'Gift', 'New')'
-    puts '10. Quit'
+    puts '10. List all labels (e.g. Gift', 'New)'
+    puts '11. Quit'
   end
 end
