@@ -25,11 +25,12 @@ class App
     puts '2. Add a new game'
     puts '3. Add a new music album'
     puts '4. List all items'
-    puts '5. List music_albums'
+    puts '5. List all music albums'
     puts '6. List all books'
-    puts '7. List all games'
-    puts '8. List genres'
-    puts '9. List authors'
+    puts '7. List of games'
+    puts '8. List all genres (e.g Comedy, Thriller)'
+    puts '9. List all authors (e.g. Stephen King)'
+    # puts '9. List all labels (e.g. 'Gift', 'New')'
     puts '10. Quit'
   end
 end
