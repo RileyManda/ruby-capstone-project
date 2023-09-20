@@ -117,14 +117,22 @@ def add_music_album(music_albums, items, genres)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-  genre = Genre.new(genres.size + 1, genre_name)
+  genre = genres.find { |g| g.name == genre_name }
+  unless genre
+    genre = Genre.new(genres.size + 1, genre_name)
+    genres << genre
+  end
+
   id = generate_unique_id(music_albums)
   music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
   items << music_album
-  music_albums << { 'id' => id, 'album' => music_album }
+  music_albums << music_album  # Store the music_album object, not a hash
   save_music_albums(music_albums)
+  save_genres(genres)
   puts 'Music album added successfully.'
 end
+
+
 
 def generate_unique_id(music_albums)
   loop do
@@ -277,15 +285,20 @@ rescue JSON::ParserError => e
 end
 
 # save music albums
+# save music albums
+# save music albums
 def save_music_albums(music_albums)
-  data_to_save = music_albums.map do |entry|
-    album = entry['album']
+  data_to_save = music_albums.map do |music_album|
     {
-      'id' => entry['id'],
-      'album_name' => album.album_name || 'No Album Name',
-      'can_be_archived' => album.can_be_archived?,
-      'on_spotify' => album.on_spotify,
-      'genre_name' => album.genre.name || 'No Genre'
+      'id' => music_album.id,
+      'album' => {
+        'album_name' => music_album.album_name || 'No Album Name',
+        'can_be_archived' => music_album.can_be_archived?,
+        'on_spotify' => music_album.on_spotify,
+        'genre' => {
+          'name' => music_album.genre.name || 'No Genre'
+        }
+      }
     }
   end
 
@@ -294,17 +307,17 @@ rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'music_album.json': #{e.message}"
 end
 
-
 # save genres
+
 def save_genres(genres)
-  data_to_save = genres.map do |genre|
+  genre_data = genres.map do |genre|
     {
-      'id' => genre.id.to_s,
-      'name' => genre.name
+      'id' => genre.id,
+      'genre_name' => genre.name || 'No Genre'
     }
   end
 
-  File.write('genre.json', JSON.pretty_generate(data_to_save))
+  File.write('genre.json', JSON.pretty_generate(genre_data))
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'genre.json': #{e.message}"
 end

@@ -1,9 +1,13 @@
 [
   {
-    "id": 309,
-    "album_name": "FFF",
-    "can_be_archived": false,
-    "on_spotify": false,
-    "genre_name": "G"
+    "id": 352,
+    "album": {
+      "album_name": "ff",
+      "can_be_archived": false,
+      "on_spotify": false,
+      "genre": {
+        "name": "G"
+      }
+    }
   }
 ]
