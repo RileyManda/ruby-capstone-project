@@ -31,8 +31,8 @@
 
 # 📖 RUBY CAPSTONE PROJECT <a name="about-project"></a>
 
-**RUBY CAPSTONE PROJECT** 
-In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure. 
+**RUBY CAPSTONE PROJECT**
+In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -94,13 +94,13 @@ it will install the required gemfile for running the project
 
    ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+> List of collaborators on this project:
 
-👤 **Author1**
+👤 **RileyManda**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@RileyManda](https://github.com/RileyManda)
+- Twitter: [@rilecodez](https://twitter.com/rilecodez)
+- LinkedIn: [rileymanda](https://www.linkedin.com/in/rileymanda/)
 
 👤 **Author2**
 
