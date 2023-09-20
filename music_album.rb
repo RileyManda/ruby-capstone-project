@@ -1,14 +1,19 @@
 class MusicAlbum
-  attr_accessor :id, :can_be_archived, :on_spotify, :item_id
+  attr_accessor :id, :can_be_archived, :on_spotify, :album_name, :genre
 
-  def initialize(id, can_be_archived, on_spotify, item_id)
-    @id = id
+  def initialize(album_name, can_be_archived, on_spotify, genre)
+    @id = generate_random_id
     @can_be_archived = can_be_archived
     @on_spotify = on_spotify
-    @item_id = item_id
+    @album_name = album_name
+    @genre = genre
   end
 
   def can_be_archived?
-    super && @on_spotify
+    @can_be_archived
+  end
+
+  def generate_random_id
+    Random.rand(1..1000)
   end
 end
