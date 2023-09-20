@@ -21,13 +21,9 @@ genres = []
 labels = []
 authors = []
 
-genres_writer = WriteFile.new('genre.json')
 genres_reader = ReadFile.new('genre.json')
-
-music_albums_writer = WriteFile.new('music_album.json')
 music_albums_reader = ReadFile.new('music_album.json')
 
-genres = genres_reader.read
 music_albums = music_albums_reader.read
 
 # adding book and label methods [START]...............................
@@ -100,6 +96,7 @@ end
 # adding game   [END]...............................
 
 # adding music_album   [START]......................
+
 def add_music_album(music_albums, items, genres)
   puts 'Adding a new music album...'
   print 'Enter album name: '
@@ -110,26 +107,23 @@ def add_music_album(music_albums, items, genres)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-  genre = genres.find { |g| g.genre_name == genre_name }
+
+  genres = load_genres
+
+  genre = genres.find { |g| g.name == genre_name }
   unless genre
     genre = Genre.new(genres.size + 1, genre_name)
     genres << genre
+    save_genres(genres)
   end
 
   music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
   items << music_album
   music_albums << music_album
   save_music_albums(music_albums)
-  save_genres(genres)
   puts 'Music album added successfully.'
 end
 
-def generate_unique_id(music_albums)
-  loop do
-    id = Random.rand(1..1000)
-    return id unless music_albums.any? { |album| album['id'] == id }
-  end
-end
 
 # adding music_album   [END]......................
 
@@ -330,6 +324,9 @@ rescue JSON::ParserError => e
   puts "Error parsing 'genre.json': #{e.message}"
   []
 end
+# load and save data to json file [END]......
+
+
 # OPTIONS Loop:
 genres = genres_reader.read
 music_albums = music_albums_reader.read
@@ -372,3 +369,5 @@ loop do
   end
 end
 # Load genres and albums from JSON files
+genres = load_genres
+music_albums = load_music_albums(genres)
