@@ -30,13 +30,8 @@ music_albums_reader = ReadFile.new('music_album.json')
 
 genres = genres_reader.read
 music_albums = music_albums_reader.read
-if genres.empty?
-  puts 'No genres found in genre.json. You can add genres using the app.'
-end
 
-if music_albums.empty?
-  puts 'No music albums found in music_album.json. You can add music albums using the app.'
-end
+
 # adding book and label methods [START]...............................
 def add_book(books, items, authors, labels)
   author = find_or_create_author(authors)
@@ -170,13 +165,15 @@ def list_all_games(games)
     display_game(index + 1, game)
   end
 end
+# list genres from genre.json file
 
 def list_genres(genres)
   puts 'Listing all genres:'
   genres.each do |genre|
-    puts genre.name
+    puts genre['genre_name']
   end
 end
+
 
 def list_authors(authors)
   puts 'Listing all authors:'
@@ -224,10 +221,10 @@ def display_music_album(index, album)
 end
 
 def display_music_album_details(album)
-  puts "Album Name: #{album.album_name || 'No Album Name'}"
-  puts "Can Be Archived: #{album.can_be_archived? ? 'Yes' : 'No'}"
-  puts "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
-  puts "Genre: #{album.genre.name || 'No Genre'}"
+  puts "Album Name: #{album['album_name'] || 'No Album Name'}"
+  puts "Can Be Archived: #{album['can_be_archived'] ? 'Yes' : 'No'}"
+  puts "On Spotify: #{album['on_spotify'] ? 'Yes' : 'No'}"
+  puts "Genre: #{album['genre']['name'] || 'No Genre'}"
 end
 
 def display_book_details(book, label)
@@ -320,7 +317,32 @@ rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'genre.json': #{e.message}"
 end
 
+def load_genres
+  if File.exist?('genre.json')
+    json_data = File.read('genre.json')
+    return [] if json_data.strip.empty?
+
+    JSON.parse(json_data).map do |genre_data|
+      id = genre_data['id']
+      name = genre_data['genre_name']
+      Genre.new(id, name)
+    end
+  else
+    []
+  end
+rescue JSON::ParserError => e
+  puts "Error parsing 'genre.json': #{e.message}"
+  []
+end
 # OPTIONS Loop:
+genres = genres_reader.read
+music_albums = music_albums_reader.read
+if genres.empty?
+  puts 'No genres found in genre.json. You can add genres using the app.'
+end
+if music_albums.empty?
+  puts 'No music albums found in music_album.json. You can add music albums using the app.'
+end
 
 loop do
   app.display_options
@@ -358,5 +380,4 @@ loop do
   end
 end
 # Load genres and albums from JSON files
-genres = genres_reader.read
-music_albums = music_albums_reader.read
+
