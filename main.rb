@@ -28,18 +28,18 @@ def add_book(books, items, authors, labels)
     author = Author.new(author_name)
     authors << author
   end
-  print "Enter label"
-  title = gets.chomp
-  print "Enter color"
-  color = gets.chomp
-  label = labels.find { |b| b.title == title && b.color == color}
-  label = Label.new(title, color)
   print 'Enter publisher: '
   publisher = gets.chomp
   print 'Enter cover state (true or false): '
   cover_state = gets.chomp.downcase == 'true'
   print 'Enter publish date (YYYY-MM-DD): '
   publish_date = Date.parse(gets.chomp)
+  print "Enter label: "
+  title = gets.chomp
+  print "Enter color: "
+  color = gets.chomp
+  label = labels.find { |b| b.title == title && b.color == color}
+  label = Label.new(title, color)
   book = Book.new(author, publisher, cover_state, publish_date, label)
   items << book
   books << book
