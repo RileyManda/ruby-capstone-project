@@ -19,35 +19,59 @@ genres = []
 labels = []
 authors = []
 
+# adding book and label methods [START]...............................
 def add_book(books, items, authors, labels)
-  puts 'Adding a new book...'
-  print "Enter author's name: "
-  author_name = gets.chomp
-  author = authors.find { |a| a.name == author_name }
-  unless author
-    author = Author.new(author_name)
-    authors << author
-  end
-  print 'Enter publisher: '
-  publisher = gets.chomp
-  print 'Enter cover state (true or false): '
-  cover_state = gets.chomp.downcase == 'true'
-  print 'Enter publish date (YYYY-MM-DD): '
-  publish_date = Date.parse(gets.chomp)
-  print 'Enter label: '
-title = gets.chomp
-print 'Enter color: '
-color = gets.chomp
-label = labels.find { |b| b.title == title && b.color == color }
-label ||= Label.new(title, color)
-book = Book.new(author, publisher, cover_state, publish_date, label)
+  author = find_or_create_author(authors)
+  publisher = input_publisher
+  cover_state = input_cover_state
+  publish_date = input_publish_date
+  label = find_or_create_label(labels)
+
+  book = Book.new(author, publisher, cover_state, publish_date, label)
 
   items << book
   books << book
   labels << label
+
   puts 'Book added successfully.'
 end
 
+def find_or_create_author(authors)
+  puts "Enter author's name: "
+  author_name = gets.chomp
+  author = authors.find { |a| a.name == author_name }
+  author ||= Author.new(author_name)
+  authors << author
+  author
+end
+
+def input_publisher
+  print 'Enter publisher: '
+  gets.chomp
+end
+
+def input_cover_state
+  print 'Enter cover state (true or false): '
+  gets.chomp.downcase == 'true'
+end
+
+def input_publish_date
+  print 'Enter publish date (YYYY-MM-DD): '
+  Date.parse(gets.chomp)
+end
+
+def find_or_create_label(labels)
+  print 'Enter label: '
+  title = gets.chomp
+  print 'Enter color: '
+  color = gets.chomp
+  label = labels.find { |b| b.title == title && b.color == color }
+  label ||= Label.new(title, color)
+  label
+end
+# adding book and label methods [END]...............................
+
+# adding game   [START]...............................
 def add_game(games, items)
   puts 'Adding a new game...'
   print 'Enter title: '
@@ -62,6 +86,9 @@ def add_game(games, items)
   puts 'Game added successfully.'
 end
 
+# adding game   [END]...............................
+
+# adding music_album   [START]......................
 def add_music_album(music_albums, items, genres)
   puts 'Adding a new music album...'
   print 'Enter album name: '
@@ -83,6 +110,9 @@ def add_music_album(music_albums, items, genres)
   puts 'Music album added successfully.'
 end
 
+# adding music_album   [END]......................
+
+# List methods  [START]...........................
 def list_all_items(items)
   puts 'Listing all items:'
   items.each_with_index do |item, index|
@@ -133,7 +163,9 @@ def list_labels(labels)
     puts label.color
   end
 end
+# List methods  [ END]...........................
 
+# Display methods  [ START]......................
 def display_item(index, item)
   puts "#{index}. #{item.class} -"
   display_item_details(item)
@@ -172,7 +204,7 @@ def display_book_details(book, label)
     puts "Label: #{label.title}"
     puts "Color: #{label.color}"
   else
-    puts "Label: No Label"
+    puts 'Label: No Label'
   end
 end
 
@@ -182,6 +214,9 @@ def display_game_details(game)
   puts "Last Played: #{game.last_played_at}"
 end
 
+# Display methods  [ START]......................
+
+# OPTIONS Loop:
 loop do
   app.display_options
   print 'Select an option: '
