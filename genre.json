@@ -1,6 +1,10 @@
 [
   {
     "id": 1,
+    "genre_name": "F"
+  },
+  {
+    "id": 2,
     "genre_name": "D"
   }
 ]
