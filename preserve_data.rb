@@ -14,14 +14,14 @@ class WriteFile < PreserveData
 end
 
 class ReadFile < PreserveData
-def read
-  WriteFile.new(@file_name).write([]) unless File.exist?(@file_name)
-  file = File.read(@file_name)
-  begin
-    JSON.parse(file)
-  rescue JSON::ParserError => e
-    puts "Error parsing #{@file_name}: #{e.message}"
-    []
+  def read
+    WriteFile.new(@file_name).write([]) unless File.exist?(@file_name)
+    file = File.read(@file_name)
+    begin
+      JSON.parse(file)
+    rescue JSON::ParserError => e
+      puts "Error parsing #{@file_name}: #{e.message}"
+      []
+    end
   end
-end
 end

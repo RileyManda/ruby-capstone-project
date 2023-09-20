@@ -27,10 +27,8 @@ genres_reader = ReadFile.new('genre.json')
 music_albums_writer = WriteFile.new('music_album.json')
 music_albums_reader = ReadFile.new('music_album.json')
 
-
 genres = genres_reader.read
 music_albums = music_albums_reader.read
-
 
 # adding book and label methods [START]...............................
 def add_book(books, items, authors, labels)
@@ -126,7 +124,6 @@ def add_music_album(music_albums, items, genres)
   puts 'Music album added successfully.'
 end
 
-
 def generate_unique_id(music_albums)
   loop do
     id = Random.rand(1..1000)
@@ -154,8 +151,8 @@ end
 
 def list_all_music_albums(music_albums)
   puts 'Listing all music albums:'
-  music_albums.each_with_index do |album, index|
-    display_music_album(index + 1, album)
+  music_albums.each_with_index do |album_data, index|
+    display_music_album(index + 1, album_data['album'])
   end
 end
 
@@ -173,7 +170,6 @@ def list_genres(genres)
     puts genre['genre_name']
   end
 end
-
 
 def list_authors(authors)
   puts 'Listing all authors:'
@@ -337,12 +333,8 @@ end
 # OPTIONS Loop:
 genres = genres_reader.read
 music_albums = music_albums_reader.read
-if genres.empty?
-  puts 'No genres found in genre.json. You can add genres using the app.'
-end
-if music_albums.empty?
-  puts 'No music albums found in music_album.json. You can add music albums using the app.'
-end
+puts 'No genres found in genre.json. You can add genres using the app.' if genres.empty?
+puts 'No music albums found in music_album.json. You can add music albums using the app.' if music_albums.empty?
 
 loop do
   app.display_options
@@ -380,4 +372,3 @@ loop do
   end
 end
 # Load genres and albums from JSON files
-
