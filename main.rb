@@ -114,6 +114,7 @@ def add_music_album(music_albums, items, genres)
   unless genre
     genre = Genre.new(genres.size + 1, genre_name)
     genres << genre
+    save_genres(genres)
   end
 
   music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
@@ -239,6 +240,7 @@ def display_game_details(game)
 end
 
 # Display methods  [ END]......................
+# load and save data to json file [START]......
 def load_music_albums
   if File.exist?('music_album.json')
     json_data = File.read('music_album.json')
@@ -279,8 +281,22 @@ rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'music_album.json': #{e.message}"
 end
 
+# save genres
+def save_genres(genres)
+  data_to_save = genres.map do |genre|
+    {
+      'id' => genre.id.to_s,
+      'name' => genre.name
+    }
+  end
+
+  File.write('genre.json', JSON.pretty_generate(data_to_save))
+rescue JSON::GeneratorError => e
+  puts "Error generating JSON data for 'genre.json': #{e.message}"
+end
 
 # OPTIONS Loop:
+
 loop do
   app.display_options
   print 'Select an option: '
@@ -310,6 +326,7 @@ loop do
   when 11
     puts 'Exiting the app. Goodbye!'
     music_albums_writer.write(music_albums)
+    genres_writer.write(genres)
     break
   else
     puts 'Invalid choice. Please select a valid option.'
