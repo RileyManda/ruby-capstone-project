@@ -117,7 +117,7 @@ def add_music_album(music_albums, items, genres)
     save_genres(genres)
   end
 
-  music_album = MusicAlbum.new(album_name, can_be_archived, on_spotify, genre)
+  music_album = MusicAlbum.new(music_albums.size + 1,album_name, can_be_archived, on_spotify, genre)
   items << music_album
   music_albums << music_album
   save_music_albums(music_albums)
