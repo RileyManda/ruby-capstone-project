@@ -8,7 +8,7 @@ class Book < Item
     @author = author
     @publisher = publisher
     @cover_state = cover_state
-    @public_date = publish_date
+    @publish_date = publish_date
     @labels = label
   end
 

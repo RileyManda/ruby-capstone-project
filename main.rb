@@ -35,12 +35,13 @@ def add_book(books, items, authors, labels)
   print 'Enter publish date (YYYY-MM-DD): '
   publish_date = Date.parse(gets.chomp)
   print 'Enter label: '
-  title = gets.chomp
-  print 'Enter color: '
-  color = gets.chomp
-  label = labels.find { |b| b.title == title && b.color == color }
-  label ||= Label.new(title, color)
-  book = Book.new(author, publisher, cover_state, publish_date, label)
+title = gets.chomp
+print 'Enter color: '
+color = gets.chomp
+label = labels.find { |b| b.title == title && b.color == color }
+label ||= Label.new(title, color)
+book = Book.new(author, publisher, cover_state, publish_date, label)
+
   items << book
   books << book
   labels << label
@@ -92,7 +93,8 @@ end
 def list_all_books(books)
   puts 'Listing all books:'
   books.each_with_index do |book, index|
-    display_book(index + 1, book)
+    puts "#{index + 1}. Book -"
+    display_book_details(book, book.label)
   end
 end
 
@@ -137,12 +139,17 @@ def display_item(index, item)
   display_item_details(item)
 end
 
+def display_book(index, book)
+  puts "#{index}. Book -"
+  display_book_details(book, book.label)
+end
+
 def display_item_details(item)
   case item
   when MusicAlbum
     display_music_album_details(item)
   when Book
-    display_book_details(item)
+    display_book_details(item, item.label)
   when Game
     display_game_details(item)
   else
@@ -156,9 +163,17 @@ def display_music_album_details(album)
   puts "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
 end
 
-def display_book_details(book)
+def display_book_details(book, label)
+  puts "Author: #{book.author.name || 'No Author'}"
   puts "Publisher: #{book.publisher || 'No Publisher'}"
   puts "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
+  puts "Publish Date: #{book.publish_date || 'No Publish Date'}"
+  if label
+    puts "Label: #{label.title}"
+    puts "Color: #{label.color}"
+  else
+    puts "Label: No Label"
+  end
 end
 
 def display_game_details(game)

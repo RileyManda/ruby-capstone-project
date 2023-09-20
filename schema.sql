@@ -14,7 +14,7 @@ CREATE TABLE item (
     author VARCHAR(255) NOT NULL,
     source VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
-    public_date DATE(255) NOT NULL,
+    publish_date DATE(255) NOT NULL,
     archived BOOLEAN(255) NOT NULL,
     can_be_archived BOOLEAN(255) NOT NULL,
     genre_id INT REFERENCES genre(id)
