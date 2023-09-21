@@ -1,16 +1,22 @@
 require_relative 'item'
+require 'securerandom'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :id
+  attr_accessor :author, :publisher, :cover_state, :publish_date, :label
+  attr_reader :id
 
-  def initialize(author, publisher, cover_state, publish_date, label)
+  def initialize(_id, author, publisher, cover_state, publish_date, label)
     super()
-    @id = Random.rand(1..100)
+    @id = generate_random_id
     @author = author
     @publisher = publisher
     @cover_state = cover_state
     @publish_date = publish_date
     @label = label
+  end
+
+  def generate_random_id
+    SecureRandom.uuid
   end
 
   def can_be_archived?

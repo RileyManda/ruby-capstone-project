@@ -1,4 +1,5 @@
 require_relative 'preserve_data'
+require 'securerandom'
 require 'json'
 require 'date'
 require_relative 'music_helper'
@@ -51,51 +52,56 @@ end
 def save_labels(labels)
   label_data = labels.map do |label|
     {
-      'label_title' => label.title || 'No Label',
-      'label_color' => label.color || 'No Label'
+      'title' => label.title || 'No Label',
+      'color' => label.color || 'No Label'
     }
   end
 
   File.write('label.json', JSON.pretty_generate(label_data))
-rescue JSON::GeneratorError => e
-  puts "Error generating JSON data for 'label.json': #{e.message}"
+
+  puts 'Labels saved successfully.'
 end
-def load_books(book_data, labels)
+
+def load_books(labels)
   return [] unless File.exist?('book.json')
 
   json_data = File.read('book.json')
   books_data = JSON.parse(json_data)
 
   books_data.map do |book_data|
-    load_book(book_data, labels)
+    load_books_details(book_data, labels)
   end
 rescue JSON::ParserError => e
   puts "Error parsing 'book.json': #{e.message}"
   []
 end
-def load_books_details(book_data, labels)
+
+def load_books_details(book_data, _labels)
   author = book_data['author']
   publisher = book_data['publisher']
   cover_state = book_data['cover_state']
   publish_date = book_data['publish_date']
-  label = extract_label(label_data['labels'])
-
+  label = extract_label(book_data['label'])
+  id = SecureRandom.uuid
   puts "Books: Author=#{author},
-   Publisher=#{publisher}, Cover state=#{cover_state}, Date=#{publish_date}, Label=#{labels}"
+   Publisher=#{publisher}, Cover state=#{cover_state}, Date=#{publish_date}, Label=#{label}"
 
-   Book.new(new_book_id, author, publisher, cover_state, publish_date, label)
+  Book.new(id, author, publisher, cover_state, publish_date, label)
 end
+
 def extract_label(label_data)
   label_data.is_a?(Hash) && label_data.key?('title') ? label_data['color'] : nil
 end
-def find_or_create_label(labels)
-  label = labels.find { |l| l.title == label_title && l.color == label_color}
+
+def find_or_create_label(labels, title, color)
+  label = labels.find { |l| l.title == title && l.color == label_color }
   unless label
     label = Label.new(title, color)
     labels << label
   end
   label
 end
+
 def load_labels
   if File.exist?('label.json')
     json_data = File.read('label.json')
@@ -133,6 +139,7 @@ def save_genres(genres)
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'genre.json': #{e.message}"
 end
+
 def load_music_albums(genres)
   return [] unless File.exist?('music.json')
 
@@ -293,5 +300,6 @@ end
 # Load genres and albums from JSON files
 genres = load_genres
 music_albums = load_music_albums(genres)
+# Load books and labels from JSON files
 labels = load_labels
 books = load_books(labels)
