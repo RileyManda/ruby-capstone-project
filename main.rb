@@ -60,7 +60,7 @@ def save_labels(labels)
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'label.json': #{e.message}"
 end
-def load_books(labels)
+def load_books(book_data, labels)
   return [] unless File.exist?('book.json')
 
   json_data = File.read('book.json')

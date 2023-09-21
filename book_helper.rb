@@ -51,6 +51,8 @@ def add_book(books, items, authors, labels)
     author = authors.find { |a| a.name == author_name }
     
     label = labels.find { |l| l.title == label_title}
+    title = 'Default'
+    color = 'Default'
     label = Label.new(title, color)  # Create a default label if not found.
   
     # generate a if statement if author is nil class
@@ -102,10 +104,12 @@ end
 def find_or_create_label(labels)
     print 'Enter label: '
     title = gets.chomp
+    title = 'Default' if title.empty?
     print 'Enter color: '
     color = gets.chomp
+    color = 'Default' if color.empty?
     label = labels.find { |b| b.title == title && b.color == color }
-    label ||= Label.new(title, color)
+    label = Label.new(title, color)
     label
 end
 def save_books(books)
@@ -127,7 +131,7 @@ def save_books(books)
 rescue JSON::GeneratorError => e
     puts "Error generating JSON data for '#{json_file_path}': #{e.message}"
 rescue StandardError => e
-    puts "Error saving music albums: #{e.message}"
+    puts "Error saving books: #{e.message}"
 end
 
   # adding book and label methods [END]........................................................
