@@ -94,13 +94,14 @@ def extract_label(label_data)
 end
 
 def find_or_create_label(labels, title, color)
-  label = labels.find { |l| l.title == title && l.color == label_color }
+  label = labels.find { |l| l.title == title && l.color == color }
   unless label
     label = Label.new(title, color)
     labels << label
   end
   label
 end
+
 
 def load_labels
   if File.exist?('label.json')

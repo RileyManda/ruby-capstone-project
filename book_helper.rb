@@ -20,10 +20,12 @@ def display_book_details(book_data, labels)
   publisher = book_data['publisher']
   cover_state = book_data['cover_state']
   publish_date = book_data['publish_date']
-  label = labels.find { |l| l.title == book_data['label'] }
+  label_title = book_data['label']
+  label = labels.find { |l| l.title == label_title }
   puts "Book - Author: #{author} | Publisher: #{publisher} | Cover State: #{cover_state} | " \
        "Publish Date: #{publish_date} | Label: #{label ? label.title : 'Unknown'}"
 end
+
 
 def display_book(index, book)
   puts "#{index}. Book -"
@@ -46,10 +48,10 @@ def add_book(books, items, authors, labels)
   author ||= Author.new(author_name)
   authors << author
 
-  print 'Enter label title: '
-  title = gets.chomp
-  print 'Enter label color: '
-  color = gets.chomp
+  # print 'Enter label title: '
+  # title = gets.chomp
+  # print 'Enter label color: '
+  # color = gets.chomp
 
   label = find_or_create_label(labels, title, color)
   id = Random.rand(1..100)
@@ -93,10 +95,10 @@ def input_publish_date
   Date.parse(gets.chomp)
 end
 
-def find_or_create_label(labels, label_title, color)
-  label = labels.find { |l| l.title == label_title && l.color == color }
+def find_or_create_label(labels, title, color)
+  label = labels.find { |l| l.title == title && l.color == color }
   unless label
-    label = Label.new(label_title, color)
+    label = Label.new(title, color)
     labels << label
   end
   label
