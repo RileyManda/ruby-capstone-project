@@ -43,5 +43,14 @@
       "album_name": "ghghy",
       "genre_name": "hh"
     }
+  },
+  {
+    "id": 6,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "ggg",
+      "genre_name": "hghg"
+    }
   }
 ]
