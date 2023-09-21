@@ -19,10 +19,13 @@ RSpec.describe MusicAlbum do
     expect(music_album1.id).not_to eq(music_album3.id)
     expect(music_album2.id).not_to eq(music_album3.id)
   end
-  
+
   it 'expects the album_name to be set correctly' do
   music_album = MusicAlbum.new(nil, 'Sample Album', true, false, genre1)
   expect(music_album.album_name).to eq('Sample Album')
 end
-
+it 'expects the can_be_archived attribute to be set correctly' do
+  music_album = MusicAlbum.new(nil, 'Sample Album', true, false, genre1)
+  expect(music_album.can_be_archived).to be false
+end
 end
