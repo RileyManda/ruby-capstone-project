@@ -4,8 +4,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "Test",
-      "genre_name": "testgenre"
+      "album_name": "test1",
+      "genre_name": "genre1"
     }
   },
   {
@@ -13,8 +13,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "sdsd",
-      "genre_name": "gfdg"
+      "album_name": "test2",
+      "genre_name": "genre2"
     }
   },
   {
@@ -22,17 +22,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "dd",
-      "genre_name": "f"
-    }
-  },
-  {
-    "id": 4,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "ff",
-      "genre_name": "g"
+      "album_name": "test3",
+      "genre_name": "genre3"
     }
   }
 ]

@@ -1,7 +1,17 @@
 [
   {
-    "id": 391,
-    "album_name": "ff",
-    "genre": "g"
+    "id": 688,
+    "album_name": "test1",
+    "genre": "genre1"
+  },
+  {
+    "id": 967,
+    "album_name": "test2",
+    "genre": "genre2"
+  },
+  {
+    "id": 529,
+    "album_name": "test3",
+    "genre": "genre3"
   }
 ]
