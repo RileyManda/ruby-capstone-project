@@ -33,4 +33,13 @@ it 'expects the genre attribute to be set correctly' do
   expect(music_album.genre).to eq(genre1)
 end
 
+it 'expects can_be_archived? to return the correct value' do
+  music_album1 = MusicAlbum.new(nil, 'Sample Album 1', true, false, genre1)
+  music_album2 = MusicAlbum.new(nil, 'Sample Album 2', false, true, genre2)
+
+  expect(music_album1.can_be_archived?).to be false
+  expect(music_album2.can_be_archived?).to be true
+end
+
+
 end
