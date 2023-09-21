@@ -4,8 +4,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "dd",
-      "genre_name": "d"
+      "album_name": "test1",
+      "genre_name": "genre1"
     }
   },
   {
@@ -13,62 +13,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "ddd",
-      "genre_name": "gg"
-    }
-  },
-  {
-    "id": 3,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "ddd",
-      "genre_name": "ff"
-    }
-  },
-  {
-    "id": 4,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "hjhjh",
-      "genre_name": "kkkk"
-    }
-  },
-  {
-    "id": 5,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "ghghy",
-      "genre_name": "hh"
-    }
-  },
-  {
-    "id": 6,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "ggg",
-      "genre_name": "hghg"
-    }
-  },
-  {
-    "id": 7,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "d",
-      "genre_name": "f"
-    }
-  },
-  {
-    "id": 8,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "fdfd",
-      "genre_name": "gg"
+      "album_name": "test3",
+      "genre_name": "test3genre"
     }
   }
 ]

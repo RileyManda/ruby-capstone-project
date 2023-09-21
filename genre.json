@@ -1,38 +1,10 @@
 [
   {
     "id": 1,
-    "genre_name": "test2"
+    "genre_name": "genre1"
   },
   {
     "id": 2,
-    "genre_name": "s"
-  },
-  {
-    "id": 3,
-    "genre_name": "d"
-  },
-  {
-    "id": 4,
-    "genre_name": "gg"
-  },
-  {
-    "id": 5,
-    "genre_name": "ff"
-  },
-  {
-    "id": 6,
-    "genre_name": "kkkk"
-  },
-  {
-    "id": 7,
-    "genre_name": "hh"
-  },
-  {
-    "id": 8,
-    "genre_name": "hghg"
-  },
-  {
-    "id": 9,
-    "genre_name": "f"
+    "genre_name": "test3genre"
   }
 ]

@@ -172,7 +172,6 @@ rescue JSON::ParserError => e
 end
 # load and save data to json file [END]......
 
-# OPTIONS Loop:
 genres = genres_reader.read
 music_albums = music_albums_reader.read
 puts 'No genres found in genre.json. You can add genres using the app.' if genres.empty?
