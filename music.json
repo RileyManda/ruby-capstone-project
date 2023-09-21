@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "test1",
+      "genre_name": "genre1"
+    }
+  },
+  {
+    "id": 2,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "test3",
+      "genre_name": "test3genre"
+    }
+  },
+  {
+    "id": 3,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "xcxcxcx",
+      "genre_name": "gggg"
+    }
+  }
+]
