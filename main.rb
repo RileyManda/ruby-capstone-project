@@ -195,7 +195,8 @@ def display_music_album_details(album)
   puts "Album Name: #{album['album_name'] || 'No Album Name'}"
   puts "Can Be Archived: #{album['can_be_archived'] ? 'Yes' : 'No'}"
   puts "On Spotify: #{album['on_spotify'] ? 'Yes' : 'No'}"
-  puts "Genre: #{album['genre']['name'] || 'No Genre'}"
+  genre_name = album['genre'] ? album['genre']['name'] : nil
+  puts "Genre: #{genre_name || 'No Genre'}"
 end
 
 # load and save data to json file [START]......
@@ -370,8 +371,8 @@ loop do
     list_labels(labels)
   when 11
     puts 'Exiting the app. Goodbye!'
-    # save_genres(genres)
-    # save_music_albums(music_albums)
+    save_genres(genres)
+    save_music_albums(music_albums)
     break
   else
     puts 'Invalid choice. Please select a valid option.'
