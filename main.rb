@@ -119,7 +119,7 @@ rescue JSON::ParserError => e
   puts "Error parsing 'label.json': #{e.message}"
   []
 end
-label = labels_reader.read
+labels_reader.read
 books = books_reader.read
 puts 'No labels found in label.json. You can add labels using the app.' if labels.empty?
 puts 'No books found in book.json. You can add books using the app.' if books.empty?

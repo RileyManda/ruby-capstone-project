@@ -1,6 +1,10 @@
 [
   {
-    "title": "book1",
+    "title": "cxx",
+    "color": "red"
+  },
+  {
+    "title": "test",
     "color": "red"
   }
 ]

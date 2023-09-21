@@ -21,8 +21,8 @@ def display_book_details(book_data, labels)
   cover_state = book_data['cover_state']
   publish_date = book_data['publish_date']
   label = labels.find { |l| l.title == book_data['label'] }
-
-  puts "Book - Author: #{author} | Publisher: #{publisher} | Cover State: #{cover_state} | Publish Date: #{publish_date} | Label: #{label ? label.title : 'Unknown'}"
+  puts "Book - Author: #{author} | Publisher: #{publisher} | Cover State: #{cover_state} | " \
+       "Publish Date: #{publish_date} | Label: #{label ? label.title : 'Unknown'}"
 end
 
 def display_book(index, book)
@@ -31,6 +31,7 @@ def display_book(index, book)
 end
 
 # Adding book and label methods [START]........................
+# rubocop:disable Metrics/MethodLength
 def add_book(books, items, authors, labels)
   puts 'Adding a new book...'
   print 'Enter author\'s name: '
@@ -67,6 +68,7 @@ def add_book(books, items, authors, labels)
   puts 'Book added successfully.'
 end
 
+# rubocop:enable Metrics/MethodLength
 def find_or_create_author(authors)
   puts "Enter author's name: "
   author_name = gets.chomp
