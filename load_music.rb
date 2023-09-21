@@ -43,12 +43,17 @@ class LoadMusic
     genre_name = extract_genre_name(album['genre'])
 
     genre = find_or_create_genre(genres, genre_name)
-
-    puts "Loaded music album: ID=#{id}, Name=#{album_name}, Can Be Archived=#{can_be_archived}, On Spotify=#{on_spotify}, Genre=#{genre_name}"
+    puts 'Loaded music album:'
+    puts "  ID=#{id}"
+    puts "  Name=#{album_name}"
+    puts "  Can Be Archived=#{can_be_archived}"
+    puts "  On Spotify=#{on_spotify}"
+    puts "  Genre=#{genre_name}"
 
     MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
   end
-# extract genres to display tio list genres
+
+  # extract genres to display tio list genres
   def self.extract_genre_name(genre_data)
     genre_data.is_a?(Hash) && genre_data.key?('name') ? genre_data['name'] : nil
   end

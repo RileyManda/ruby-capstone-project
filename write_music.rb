@@ -55,12 +55,12 @@ def add_music_album(music_albums, items, genres)
   on_spotify = gets.chomp.downcase == 'true'
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
-  genres = LoadMusic.load_genres
-  genre = genres.find { |g| g.name == genre_name }
+  loaded_genres = LoadMusic.load_genres
+  genre = loaded_genres.find { |g| g.name == genre_name }
   unless genre
     genre = Genre.new(genres.size + 1, genre_name)
-    genres << genre
-    save_genres(genres)
+    loaded_genres << genre
+    save_genres(loaded_genres)
   end
 
   new_id = music_albums.size + 1
@@ -87,6 +87,7 @@ def add_music_album(music_albums, items, genres)
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
 end
+
 
 # save music album to items collection
 def self.save_items(items)
