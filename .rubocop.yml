@@ -55,4 +55,5 @@ Metrics/MethodLength:
   Max: 20
   Exclude:
     - 'add_music_album'
-
+Metrics/ParameterLists:
+  Max: 6
