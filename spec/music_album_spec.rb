@@ -40,4 +40,22 @@ RSpec.describe MusicAlbum do
     expect(music_album1.can_be_archived?).to be false
     expect(music_album2.can_be_archived?).to be true
   end
+  it 'saves music albums to the JSON file' do
+    music_albums = [
+      {
+        'id' => 1,
+        'album' => {
+          'can_be_archived' => false,
+          'on_spotify' => false,
+          'album_name' => 'test1',
+          'genre_name' => 'genre1'
+        }
+      }
+    ]
+    expect { WriteMusic.save_music_albums(music_albums) }.not_to raise_error
+  end
+  it 'saves genres to the JSON file' do
+    genres = [genre1, genre2]
+    expect { WriteMusic.save_genres(genres) }.not_to raise_error
+  end
 end

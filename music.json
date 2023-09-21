@@ -7,41 +7,5 @@
       "album_name": "test1",
       "genre_name": "genre1"
     }
-  },
-  {
-    "id": 2,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "test2",
-      "genre_name": "genre2"
-    }
-  },
-  {
-    "id": 3,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "test3",
-      "genre_name": "genre3"
-    }
-  },
-  {
-    "id": 4,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "dd",
-      "genre_name": "d"
-    }
-  },
-  {
-    "id": 5,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": false,
-      "album_name": "test4",
-      "genre_name": "genre4"
-    }
   }
 ]
