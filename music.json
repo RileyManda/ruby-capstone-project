@@ -34,5 +34,14 @@
       "album_name": "dd",
       "genre_name": "d"
     }
+  },
+  {
+    "id": 5,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "test4",
+      "genre_name": "genre4"
+    }
   }
 ]

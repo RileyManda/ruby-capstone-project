@@ -43,12 +43,12 @@ class LoadMusic
     genre_name = extract_genre_name(album['genre'])
 
     genre = find_or_create_genre(genres, genre_name)
-    puts 'Loaded music album:'
-    puts "  ID=#{id}"
-    puts "  Name=#{album_name}"
-    puts "  Can Be Archived=#{can_be_archived}"
-    puts "  On Spotify=#{on_spotify}"
-    puts "  Genre=#{genre_name}"
+    # puts 'Loaded music album:'
+    # puts "  ID=#{id}"
+    # puts "  Name=#{album_name}"
+    # puts "  Can Be Archived=#{can_be_archived}"
+    # puts "  On Spotify=#{on_spotify}"
+    # puts "  Genre=#{genre_name}"
 
     MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
   end
