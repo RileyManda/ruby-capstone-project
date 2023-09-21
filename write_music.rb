@@ -55,7 +55,7 @@ def add_music_album(music_albums, items, genres)
 
   loaded_genres = LoadMusic.load_genres
   genre = find_or_create_genre(loaded_genres, genre_name)
-
+  save_genres(loaded_genres)
   new_id = music_albums.size + 1
   music_album = create_music_album(new_id, album_name, on_spotify, can_be_archived, genre)
 
@@ -64,6 +64,7 @@ def add_music_album(music_albums, items, genres)
 
   puts 'Music album added successfully.'
 end
+
 
 def prompt_for_album_name
   print 'Enter album name: '
