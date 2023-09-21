@@ -40,7 +40,9 @@ def add_music_album(music_albums, items, genres)
   print 'Can the album be archived? (true or false): '
   can_be_archived = gets.chomp.downcase == 'true'
 
+  # rubocop:disable Lint/ShadowedArgument
   genres = load_genres
+  # rubocop:enable Lint/ShadowedArgument
 
   genre = genres.find { |g| g.name == genre_name }
   unless genre
@@ -54,9 +56,15 @@ def add_music_album(music_albums, items, genres)
 
   music_album.can_be_archived = can_be_archived
   items << music_album
-  music_albums << { 'id' => new_id,
-                    'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name,
-                                 'genre_name' => genre_name } }
+  music_albums << {
+    'id' => new_id,
+    'album' => {
+      'can_be_archived' => can_be_archived,
+      'on_spotify' => on_spotify,
+      'album_name' => album_name,
+      'genre_name' => genre_name
+    }
+  }
 
   save_music_albums(music_albums)
   # rubocop:enable Metrics/MethodLength
