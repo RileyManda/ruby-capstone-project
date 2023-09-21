@@ -61,7 +61,6 @@ def add_music_album(music_albums, items, genres)
   puts 'Music album added successfully.'
 end
 
-
 # save music
 # Save music albums to the JSON file
 
