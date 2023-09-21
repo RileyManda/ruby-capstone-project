@@ -28,6 +28,7 @@ def display_music_album_details(album)
 end
 
 # add music album
+# rubocop:disable Metrics/MethodLength
 def add_music_album(music_albums, items, genres)
   puts 'Adding a new music album...'
   print 'Enter album name: '
@@ -58,9 +59,9 @@ def add_music_album(music_albums, items, genres)
                                  'genre_name' => genre_name } }
 
   save_music_albums(music_albums)
+  # rubocop:enable Metrics/MethodLength
   puts 'Music album added successfully.'
 end
-
 # save music
 # Save music albums to the JSON file
 
