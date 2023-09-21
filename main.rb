@@ -122,7 +122,7 @@ def add_music_album(music_albums, items, genres)
   music_album = MusicAlbum.new(new_id, album_name, on_spotify, genre)
   music_album.can_be_archived = can_be_archived
   items << music_album
-  music_albums << { 'id' => new_id, 'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name } }
+  music_albums << { 'id' => new_id, 'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name, 'genre_id' => genre.id } }
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
 end
@@ -136,7 +136,8 @@ def save_music_albums(music_albums)
       'album' => {
         'can_be_archived' => album_data['album']['can_be_archived'],
         'on_spotify' => album_data['album']['on_spotify'],
-        'album_name' => album_data['album']['album_name']
+        'album_name' => album_data['album']['album_name'],
+        'genre_id' => album_data['album']['genre_id']
       }
     }
   end

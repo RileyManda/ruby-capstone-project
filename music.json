@@ -4,7 +4,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "test1"
+      "album_name": "test1",
+      "genre_id": null
     }
   },
   {
@@ -12,7 +13,17 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "test2"
+      "album_name": "test2",
+      "genre_id": null
+    }
+  },
+  {
+    "id": 3,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "ss",
+      "genre_id": 3
     }
   }
 ]
