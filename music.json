@@ -25,5 +25,14 @@
       "album_name": "test3",
       "genre_name": "genre3"
     }
+  },
+  {
+    "id": 4,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "dd",
+      "genre_name": "d"
+    }
   }
 ]

@@ -2,7 +2,7 @@ require 'json'
 
 class LoadMusic
   # load genres
-   def self.load_genres
+  def self.load_genres
     return [] unless File.exist?('genre.json')
 
     json_data = File.read('genre.json')

@@ -44,8 +44,9 @@ class WriteMusic
     puts "Error saving music albums: #{e.message}"
   end
 end
+
 # add music album create music album
-def add_music_album(music_albums, items, genres)
+def add_music_album(music_albums, items, _genres)
   puts 'Adding a new music album...'
 
   album_name = prompt_for_album_name
@@ -64,7 +65,6 @@ def add_music_album(music_albums, items, genres)
 
   puts 'Music album added successfully.'
 end
-
 
 def prompt_for_album_name
   print 'Enter album name: '
@@ -96,7 +96,6 @@ def find_or_create_genre(genres, genre_name)
   genre
 end
 
-
 def create_music_album(id, album_name, on_spotify, can_be_archived, genre)
   music_album = MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
   music_album.can_be_archived = can_be_archived
@@ -108,6 +107,7 @@ def add_to_items(items, music_album)
   save_items(items)
 end
 
+# rubocop:disable Metrics/ParameterLists
 def add_to_music_albums(music_albums, new_id, album_name, genre_name, on_spotify, can_be_archived)
   music_albums << {
     'id' => new_id,
@@ -121,7 +121,7 @@ def add_to_music_albums(music_albums, new_id, album_name, genre_name, on_spotify
   save_music_albums(music_albums)
 end
 
-
+# rubocop:enable Metrics/ParameterLists
 # save music album to items collection
 def self.save_items(items)
   json_file_path = 'items.json'
