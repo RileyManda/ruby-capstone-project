@@ -111,30 +111,46 @@ end
 
 # load and save data to json file [START]......
 def load_music_albums(genres)
-  if File.exist?('music.json')
-    json_data = File.read('music.json')
+  return [] unless File.exist?('music.json')
 
-    JSON.parse(json_data).map do |album_data|
-      album = album_data['album']
-      id = album_data['id']
-      album_name = album['album_name']
-      can_be_archived = album['can_be_archived']
-      on_spotify = album['on_spotify']
-      genre_data = album['genre']
-      genre_name = genre_data['name'] if genre_data.is_a?(Hash) && genre_data.key?('name')
-      genre = genres.find { |g| g.name == genre_name }
-      unless genre
-        genre = Genre.new(genres.size + 1, genre_name)
-        genres << genre
-      end
-      puts "Loaded music album: ID=#{id}, Name=#{album_name}, Can Be Archived=#{can_be_archived}, On Spotify=#{on_spotify}, Genre=#{genre_name}"
-      MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
-    end
-    []
+  json_data = File.read('music.json')
+  music_albums_data = JSON.parse(json_data)
+
+  music_albums_data.map do |album_data|
+    load_music_album(album_data, genres)
   end
 rescue JSON::ParserError => e
   puts "Error parsing 'music.json': #{e.message}"
   []
+end
+
+def load_music_album(album_data, genres)
+  album = album_data['album']
+  id = album_data['id']
+  album_name = album['album_name']
+  can_be_archived = album['can_be_archived']
+  on_spotify = album['on_spotify']
+  genre_name = extract_genre_name(album['genre'])
+
+  genre = find_or_create_genre(genres, genre_name)
+
+  puts "Loaded music album: ID=#{id}, Name=#{album_name},
+   Can Be Archived=#{can_be_archived}, On Spotify=#{on_spotify}, Genre=#{genre_name}"
+
+  MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
+end
+
+def extract_genre_name(genre_data)
+  genre_data.is_a?(Hash) && genre_data.key?('name') ? genre_data['name'] : nil
+end
+
+def find_or_create_genre(genres, genre_name)
+  genre = genres.find { |g| g.name == genre_name }
+  unless genre
+    genre = Genre.new(genres.size + 1, genre_name)
+    genres << genre
+  end
+  genre
 end
 
 def load_genres
