@@ -61,5 +61,14 @@
       "album_name": "d",
       "genre_name": "f"
     }
+  },
+  {
+    "id": 8,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "fdfd",
+      "genre_name": "gg"
+    }
   }
 ]
