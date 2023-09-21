@@ -116,14 +116,13 @@ def add_music_album(music_albums, items, genres)
     save_genres(genres)
   end
 
-  # Calculate a new ID for the music album
   new_id = music_albums.size + 1
-
   music_album = MusicAlbum.new(new_id, album_name, on_spotify, can_be_archived, genre)
 
   music_album.can_be_archived = can_be_archived
   items << music_album
-  music_albums << { 'id' => new_id, 'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name, 'genre_id' => genre.id } }
+  music_albums << { 'id' => new_id, 'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name, 'genre_name' => genre_name } }
+
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
 end
@@ -138,14 +137,15 @@ def save_music_albums(music_albums)
         'can_be_archived' => album_data['album']['can_be_archived'],
         'on_spotify' => album_data['album']['on_spotify'],
         'album_name' => album_data['album']['album_name'],
-        'genre_id' => album_data['album']['genre_id']
+        # 'genre_id' => album_data['album']['genre_id']
+        'genre_name' => album_data['album']['genre_name']
       }
     }
   end
 
   json_file_path = 'music.json'
 
-  File.open(json_file_path, 'w') do |file|
+    File.open(json_file_path, 'w') do |file|
     file.write(JSON.pretty_generate(data_to_save))
   end
 
