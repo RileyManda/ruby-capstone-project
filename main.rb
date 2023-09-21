@@ -23,6 +23,8 @@ genres = []
 labels = []
 authors = []
 
+@games = []
+
 # adding book and label methods [START]...............................
 def add_book(books, items, authors, labels)
   author = find_or_create_author(authors)
@@ -76,21 +78,7 @@ end
 # adding book and label methods [END]...............................
 
 # adding game   [START]...............................
-def add_game(games, items)
-  puts 'Adding a new game...'
-  print 'Enter title: '
-  title = gets.chomp
-  print 'Enter description: '
-  description = gets.chomp
-  print 'Enter last played date (YYYY-MM-DD): '
-  last_played_at = Date.parse(gets.chomp)
-  game = Game.new(title: title, description: description, last_played_at: last_played_at)
-  games << game
-  items << game
-  puts 'Game added successfully.'
-end
 
-# adding game   [END]...............................
 
 # adding music_album   [START]......................
 def add_music_album(music_albums, items, genres)
@@ -136,13 +124,6 @@ def list_all_music_albums(music_albums)
   puts 'Listing all music albums:'
   music_albums.each_with_index do |album, index|
     display_music_album(index + 1, album)
-  end
-end
-
-def list_all_games(games)
-  puts 'Listing all games:'
-  games.each_with_index do |game, index|
-    display_game(index + 1, game)
   end
 end
 
@@ -218,17 +199,6 @@ def display_book_details(book, label)
   end
 end
 
-def display_game(index, game)
-  puts "#{index}. Game -"
-  display_game_details(game)
-end
-
-def display_game_details(game)
-  puts "Title: #{game.title}"
-  puts "Description: #{game.description}"
-  puts "Last Played: #{game.last_played_at}"
-end
-
 # Display methods  [ START]......................
 
 # OPTIONS Loop:
@@ -241,7 +211,7 @@ loop do
   when 1
     add_book(books, items, authors, labels)
   when 2
-    add_game(games, items)
+    app.add_game(games, items)
   when 3
     add_music_album(music_albums, items, genres)
   when 4
@@ -251,7 +221,7 @@ loop do
   when 6
     list_all_books(books)
   when 7
-    list_all_games(games)
+    app.list_all_games 
   when 8
     list_genres(genres)
   when 9
