@@ -8,9 +8,9 @@ class LoadMusic
     json_data = File.read('genre.json')
     genre_data = JSON.parse(json_data)
 
-    genre_data.map do |genre_data|
-      id = genre_data['id']
-      name = genre_data['genre_name']
+    genre_data.map do |data|
+      id = data['id']
+      name = data['genre_name']
       Genre.new(id, name)
     end
   rescue JSON::ParserError => e

@@ -48,4 +48,3 @@ def display_music_album_details(album)
   genre_name = album['genre'] ? album['genre']['name'] : album['genre_name']
   puts "Genre: #{genre_name || 'No Genre'}"
 end
-

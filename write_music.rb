@@ -88,31 +88,29 @@ def add_music_album(music_albums, items, genres)
   puts 'Music album added successfully.'
 end
 
-
 # save music album to items collection
 def self.save_items(items)
-    json_file_path = 'items.json'
-    items_data = []
+  json_file_path = 'items.json'
+  items_data = []
 
-    if File.exist?(json_file_path)
-      existing_items_data = JSON.parse(File.read(json_file_path))
-      items_data.concat(existing_items_data)
-    end
-
-    items_data += items.map do |item|
-      {
-        'id' => item.id,
-        'album_name' => item.album_name,
-        'genre' => item.genre.name
-      }
-    end
-
-    File.write(json_file_path, JSON.pretty_generate(items_data))
-
-    puts 'Items saved successfully.'
-  rescue JSON::GeneratorError => e
-    puts "Error generating JSON data for 'items.json': #{e.message}"
-  rescue StandardError => e
-    puts "Error saving items: #{e.message}"
+  if File.exist?(json_file_path)
+    existing_items_data = JSON.parse(File.read(json_file_path))
+    items_data.concat(existing_items_data)
   end
 
+  items_data += items.map do |item|
+    {
+      'id' => item.id,
+      'album_name' => item.album_name,
+      'genre' => item.genre.name
+    }
+  end
+
+  File.write(json_file_path, JSON.pretty_generate(items_data))
+
+  puts 'Items saved successfully.'
+rescue JSON::GeneratorError => e
+  puts "Error generating JSON data for 'items.json': #{e.message}"
+rescue StandardError => e
+  puts "Error saving items: #{e.message}"
+end
