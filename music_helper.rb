@@ -31,7 +31,7 @@ end
 def add_music_album(music_albums, _items, genres)
   puts 'Adding a new music album...'
 
-  album_name, genre_name, on_spotify, can_be_archived = get_album_info_from_user
+  album_name, genre_name, on_spotify, can_be_archived = album_info_from_user
 
   genre = find_or_create_genre(genres, genre_name)
 
@@ -42,7 +42,7 @@ def add_music_album(music_albums, _items, genres)
   puts 'Music album added successfully.'
 end
 
-def get_album_info_from_user
+def album_info_from_user
   print 'Enter album name: '
   album_name = gets.chomp.to_s
   print 'Enter genre name: '
