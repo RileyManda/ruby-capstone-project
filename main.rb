@@ -79,7 +79,6 @@ end
 
 # adding game   [START]...............................
 
-
 # adding music_album   [START]......................
 def add_music_album(music_albums, items, genres)
   puts 'Adding a new music album...'
@@ -221,7 +220,7 @@ loop do
   when 6
     list_all_books(books)
   when 7
-    app.list_all_games 
+    app.list_all_games
   when 8
     list_genres(genres)
   when 9

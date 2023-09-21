@@ -22,7 +22,7 @@ class App
 
     load_games
   end
-  
+
   def display_options
     puts 'Options:'
     puts '1. Add a new book'
@@ -37,7 +37,7 @@ class App
     puts '10. List all labels (e.g. Gift', 'New)'
     puts '11. Quit'
   end
-  
+
   def add_game(games, items)
     puts 'Adding a new game...'
     print 'Enter title: '
@@ -52,37 +52,38 @@ class App
     puts 'Game added successfully.'
     store_game(title, description, last_played_at)
   end
-  
+
   # adding game   [END]...............................
-    def store_game(title, description, last_played_at)
-      @games << {
-        'title' => title,
-        'description' => description,
-        'last_played_at' => last_played_at
-      }
-      File.write('./storage_files/games.json', JSON.pretty_generate(@games))
+  def store_game(title, description, last_played_at)
+    @games << {
+      'title' => title,
+      'description' => description,
+      'last_played_at' => last_played_at
+    }
+    File.write('./storage_files/games.json', JSON.pretty_generate(@games))
+  end
+
+  def load_games
+    games_data = JSON.parse(File.read('./storage_files/games.json'))
+    @games = games_data
+  rescue JSON::ParserError => e
+    puts "Error parsing games.json: #{e.message}"
+  end
+
+  def list_all_games
+    puts 'Listing all games:'
+    @games.each_with_index do |game, index|
+      puts "#{index + 1} '#{game['title']}'"
     end
-  
-    def load_games
-      games_data = JSON.parse(File.read('./storage_files/games.json'))
-      @games = games_data
-    rescue JSON::ParserError => e
-      puts "Error parsing games.json: #{e.message}"
-    end
-    def list_all_games
-      puts 'Listing all games:'
-      @games.each_with_index do |game, index|
-        puts "#{index + 1} '#{game['title']}'"
-      end
-    end
-    # def display_game(index, game)
-    #   puts "#{index}. Game -"
-    #   display_game_details(game)
-    # end
-    
-    # def display_game_details(game)
-    #   puts "Title: #{game.title}"
-    #   puts "Description: #{game.description}"
-    #   puts "Last Played: #{game.last_played_at}"
-    # end
+  end
+  # def display_game(index, game)
+  #   puts "#{index}. Game -"
+  #   display_game_details(game)
+  # end
+
+  # def display_game_details(game)
+  #   puts "Title: #{game.title}"
+  #   puts "Description: #{game.description}"
+  #   puts "Last Played: #{game.last_played_at}"
+  # end
 end
