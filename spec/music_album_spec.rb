@@ -3,6 +3,7 @@ require_relative '../music_album'
 require_relative '../write_music'
 require_relative '../load_music'
 require_relative '../genre'
+require_relative '../music_helper'
 
 RSpec.describe MusicAlbum do
   let(:genre1) { Genre.new(1, 'genre1') }
@@ -50,6 +51,17 @@ RSpec.describe MusicAlbum do
           'album_name' => 'test1',
           'genre_name' => 'genre1'
         }
+      }
+    ]
+    expect { WriteMusic.save_music_albums(music_albums) }.not_to raise_error
+  end
+
+  it 'should save genre to genre.json' do
+    music_albums = [
+      {
+        'id' => 1,
+        genre_name: 'genre1'
+
       }
     ]
     expect { WriteMusic.save_music_albums(music_albums) }.not_to raise_error
