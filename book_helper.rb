@@ -26,7 +26,6 @@ def display_book_details(book_data, labels)
        "Publish Date: #{publish_date} | Label: #{label ? label.title : 'Unknown'}"
 end
 
-
 def display_book(index, book)
   puts "#{index}. Book -"
   display_book_details(book, book.label)

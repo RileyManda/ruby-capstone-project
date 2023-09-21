@@ -102,7 +102,6 @@ def find_or_create_label(labels, title, color)
   label
 end
 
-
 def load_labels
   if File.exist?('label.json')
     json_data = File.read('label.json')
