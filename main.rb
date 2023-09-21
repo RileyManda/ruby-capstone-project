@@ -47,6 +47,7 @@ end
 
 # adding game   [END]........................................................................................
 
+
 # save and load book [Start]
 
 def save_labels(labels)
@@ -125,82 +126,10 @@ puts 'No labels found in label.json. You can add labels using the app.' if label
 puts 'No books found in book.json. You can add books using the app.' if books.empty?
 # load and save book [End]
 
-# music_album   [START]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# load and save data to json file [START]......
-def save_genres(genres)
-  genre_data = genres.map do |genre|
-    {
-      'id' => genre.id,
-      'genre_name' => genre.name || 'No Genre'
-    }
-  end
-
-  File.write('genre.json', JSON.pretty_generate(genre_data))
-rescue JSON::GeneratorError => e
-  puts "Error generating JSON data for 'genre.json': #{e.message}"
-end
-
-def load_music_albums(genres)
-  return [] unless File.exist?('music.json')
-
-  json_data = File.read('music.json')
-  music_albums_data = JSON.parse(json_data)
-
-  music_albums_data.map do |album_data|
-    load_music_album(album_data, genres)
-  end
-rescue JSON::ParserError => e
-  puts "Error parsing 'music.json': #{e.message}"
-  []
-end
-
-def load_music_album(album_data, genres)
-  album = album_data['album']
-  id = album_data['id']
-  album_name = album['album_name']
-  can_be_archived = album['can_be_archived']
-  on_spotify = album['on_spotify']
-  genre_name = extract_genre_name(album['genre'])
-
-  genre = find_or_create_genre(genres, genre_name)
-
-  puts "Loaded music album: ID=#{id}, Name=#{album_name},
-   Can Be Archived=#{can_be_archived}, On Spotify=#{on_spotify}, Genre=#{genre_name}"
-
-  MusicAlbum.new(id, album_name, on_spotify, can_be_archived, genre)
-end
-
-def extract_genre_name(genre_data)
-  genre_data.is_a?(Hash) && genre_data.key?('name') ? genre_data['name'] : nil
-end
-
-def find_or_create_genre(genres, genre_name)
-  genre = genres.find { |g| g.name == genre_name }
-  unless genre
-    genre = Genre.new(genres.size + 1, genre_name)
-    genres << genre
-  end
-  genre
-end
-
-def load_genres
-  if File.exist?('genre.json')
-    json_data = File.read('genre.json')
-    return [] if json_data.strip.empty?
-
-    JSON.parse(json_data).map do |genre_data|
-      id = genre_data['id']
-      name = genre_data['genre_name']
-      Genre.new(id, name)
-    end
-  else
-    []
-  end
-rescue JSON::ParserError => e
-  puts "Error parsing 'genre.json': #{e.message}"
-  []
-end
 # load and save data to json file [END]......
+
+
+# load music genres   [START]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 genres = genres_reader.read
 music_albums = music_albums_reader.read
@@ -297,9 +226,12 @@ loop do
     puts 'Invalid choice. Please select a valid option.'
   end
 end
-# Load genres and albums from JSON files
-genres = load_genres
-music_albums = load_music_albums(genres)
+
 # Load books and labels from JSON files
 labels = load_labels
 books = load_books(labels)
+
+# Load genres and music from JSON files
+genres = LoadMusic.load_genres
+music_albums = LoadMusic.load_music_albums(genres)
+
