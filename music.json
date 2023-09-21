@@ -4,8 +4,17 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "test1",
-      "genre_name": "genre1"
+      "album_name": "dd",
+      "genre_name": "d"
+    }
+  },
+  {
+    "id": 2,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "ddd",
+      "genre_name": "gg"
     }
   }
 ]

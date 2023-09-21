@@ -1,6 +1,18 @@
 [
   {
     "id": 1,
-    "genre_name": "genre1"
+    "genre_name": "test2"
+  },
+  {
+    "id": 2,
+    "genre_name": "s"
+  },
+  {
+    "id": 3,
+    "genre_name": "d"
+  },
+  {
+    "id": 4,
+    "genre_name": "gg"
   }
 ]
