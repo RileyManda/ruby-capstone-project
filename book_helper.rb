@@ -51,7 +51,7 @@ def add_book(books, items, authors, labels)
     author = authors.find { |a| a.name == author_name }
     
     label = labels.find { |l| l.title == label_title}
-    label ||= Label.new(label_title)  # Create a default label if not found.
+    label = Label.new(title, color)  # Create a default label if not found.
   
     # generate a if statement if author is nil class
     

@@ -104,7 +104,7 @@ def load_labels
     JSON.parse(json_data).map do |label_data|
       title = label_data['title']
       color = label_data['color']
-      Lbel.new(title, color)
+      Label.new(title, color)
     end
   else
     []
