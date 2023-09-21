@@ -47,7 +47,6 @@ end
 
 # adding game   [END]........................................................................................
 
-
 # save and load book [Start]
 
 def save_labels(labels)
@@ -127,7 +126,6 @@ puts 'No books found in book.json. You can add books using the app.' if books.em
 # load and save book [End]
 
 # load and save data to json file [END]......
-
 
 # load music genres   [START]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -234,4 +232,3 @@ books = load_books(labels)
 # Load genres and music from JSON files
 genres = LoadMusic.load_genres
 music_albums = LoadMusic.load_music_albums(genres)
-
