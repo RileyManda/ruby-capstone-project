@@ -49,3 +49,10 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
+# .rubocop.yml
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'add_music_album'
+
