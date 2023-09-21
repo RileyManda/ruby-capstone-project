@@ -45,6 +45,7 @@ def display_music_album_details(album)
   puts "Album Name: #{album['album_name'] || 'No Album Name'}"
   puts "Can Be Archived: #{album['can_be_archived'] ? 'Yes' : 'No'}"
   puts "On Spotify: #{album['on_spotify'] ? 'Yes' : 'No'}"
-  genre_name = album['genre'] ? album['genre']['name'] : nil
+  genre_name = album['genre'] ? album['genre']['name'] : album['genre_name']
   puts "Genre: #{genre_name || 'No Genre'}"
 end
+
