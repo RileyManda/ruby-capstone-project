@@ -116,14 +116,13 @@ def add_music_album(music_albums, items, genres)
     save_genres(genres)
   end
 
-  # Create a new ID for the music album
-  max_id = music_albums.map(&:id).max || 0
-  new_id = max_id + 1
+  # Calculate a new ID for the music album
+  new_id = music_albums.size + 1
 
   music_album = MusicAlbum.new(new_id, album_name, on_spotify, genre)
   music_album.can_be_archived = can_be_archived
   items << music_album
-  music_albums << music_album
+  music_albums << { 'id' => new_id, 'album' => { 'can_be_archived' => can_be_archived, 'on_spotify' => on_spotify, 'album_name' => album_name } }
   save_music_albums(music_albums)
   puts 'Music album added successfully.'
 end
@@ -131,28 +130,19 @@ end
 # Save music albums to the JSON file
 
 def save_music_albums(music_albums)
-  data_to_save = music_albums.map do |music_album|
-    album_data = {
-      'id' => music_album.id,
+  data_to_save = music_albums.map do |album_data|
+    {
+      'id' => album_data['id'],
       'album' => {
-        'can_be_archived' => music_album.can_be_archived?,
-        'on_spotify' => music_album.on_spotify,
-        'album_name' => music_album.album_name
+        'can_be_archived' => album_data['album']['can_be_archived'],
+        'on_spotify' => album_data['album']['on_spotify'],
+        'album_name' => album_data['album']['album_name']
       }
     }
-
-    if music_album.genre
-      album_data['album']['genre'] = {
-        'name' => music_album.genre.name || 'No Genre'
-      }
-    end
-
-    album_data
   end
 
   json_file_path = 'music.json'
-puts 'Data to Save:'
-  puts JSON.pretty_generate(data_to_save)
+
   File.open(json_file_path, 'w') do |file|
     file.write(JSON.pretty_generate(data_to_save))
   end
@@ -163,7 +153,6 @@ rescue JSON::GeneratorError => e
 rescue StandardError => e
   puts "Error saving music albums: #{e.message}"
 end
-
 
 def save_genres(genres)
   genre_data = genres.map do |genre|
