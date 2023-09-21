@@ -2,6 +2,7 @@ require_relative 'preserve_data'
 require 'json'
 require 'date'
 require_relative 'music_helper'
+require_relative 'book_helper'
 require_relative 'item'
 require_relative 'author'
 require_relative 'book'
@@ -25,58 +26,9 @@ genres_reader = ReadFile.new('genre.json')
 music_albums_reader = ReadFile.new('music.json')
 music_albums = music_albums_reader.read
 
-# adding book and label methods [START].................................................
-def add_book(books, items, authors, labels)
-  author = find_or_create_author(authors)
-  publisher = input_publisher
-  cover_state = input_cover_state
-  publish_date = input_publish_date
-  label = find_or_create_label(labels)
-
-  book = Book.new(author, publisher, cover_state, publish_date, label)
-
-  items << book
-  books << book
-  labels << label
-
-  puts 'Book added successfully.'
-end
-
-def find_or_create_author(authors)
-  puts "Enter author's name: "
-  author_name = gets.chomp
-  author = authors.find { |a| a.name == author_name }
-  author ||= Author.new(author_name)
-  authors << author
-  author
-end
-
-def input_publisher
-  print 'Enter publisher: '
-  gets.chomp
-end
-
-def input_cover_state
-  print 'Enter cover state (true or false): '
-  gets.chomp.downcase == 'true'
-end
-
-def input_publish_date
-  print 'Enter publish date (YYYY-MM-DD): '
-  Date.parse(gets.chomp)
-end
-
-def find_or_create_label(labels)
-  print 'Enter label: '
-  title = gets.chomp
-  print 'Enter color: '
-  color = gets.chomp
-  label = labels.find { |b| b.title == title && b.color == color }
-  label ||= Label.new(title, color)
-  label
-end
-# adding book and label methods [END]........................................................
-
+labels_reader = ReadFile.new('label.json')
+books_reader = ReadFile.new('book.json')
+books = books_reader.read
 # adding game   [START]......................................................................
 def add_game(games, items)
   puts 'Adding a new game...'
@@ -94,8 +46,81 @@ end
 
 # adding game   [END]........................................................................................
 
-# music_album   [START]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# save and load book [Start]
 
+def save_labels(labels)
+  label_data = labels.map do |label|
+    {
+      'label_title' => label.title || 'No Label',
+      'label_color' => label.color || 'No Label'
+    }
+  end
+
+  File.write('label.json', JSON.pretty_generate(label_data))
+rescue JSON::GeneratorError => e
+  puts "Error generating JSON data for 'label.json': #{e.message}"
+end
+def load_books(labels)
+  return [] unless File.exist?('book.json')
+
+  json_data = File.read('book.json')
+  books_data = JSON.parse(json_data)
+
+  books_data.map do |book_data|
+    load_book(book_data, labels)
+  end
+rescue JSON::ParserError => e
+  puts "Error parsing 'book.json': #{e.message}"
+  []
+end
+def load_books_details(book_data, labels)
+  author = book_data['author']
+  publisher = book_data['publisher']
+  cover_state = book_data['cover_state']
+  publish_date = book_data['publish_date']
+  label = extract_label(label_data['labels'])
+
+  puts "Books: Author=#{author},
+   Publisher=#{publisher}, Cover state=#{cover_state}, Date=#{publish_date}, Label=#{labels}"
+
+   Book.new(new_book_id, author, publisher, cover_state, publish_date, label)
+end
+def extract_label(label_data)
+  label_data.is_a?(Hash) && label_data.key?('title') ? label_data['color'] : nil
+end
+def find_or_create_label(labels)
+  label = labels.find { |l| l.title == label_title && l.color == label_color}
+  unless label
+    label = Label.new(title, color)
+    labels << label
+  end
+  label
+end
+def load_labels
+  if File.exist?('label.json')
+    json_data = File.read('label.json')
+    return [] if json_data.strip.empty?
+
+    JSON.parse(json_data).map do |label_data|
+      title = label_data['title']
+      color = label_data['color']
+      Lbel.new(title, color)
+    end
+  else
+    []
+  end
+rescue JSON::ParserError => e
+  puts "Error parsing 'label.json': #{e.message}"
+  []
+end
+label = labels_reader.read
+books = books_reader.read
+puts 'No labels found in label.json. You can add labels using the app.' if labels.empty?
+puts 'No books found in book.json. You can add books using the app.' if books.empty?
+# load and save book [End]
+
+# music_album   [START]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# load and save data to json file [START]......
 def save_genres(genres)
   genre_data = genres.map do |genre|
     {
@@ -108,8 +133,6 @@ def save_genres(genres)
 rescue JSON::GeneratorError => e
   puts "Error generating JSON data for 'genre.json': #{e.message}"
 end
-
-# load and save data to json file [START]......
 def load_music_albums(genres)
   return [] unless File.exist?('music.json')
 
@@ -186,14 +209,6 @@ def list_all_items(items)
   end
 end
 
-def list_all_books(books)
-  puts 'Listing all books:'
-  books.each_with_index do |book, index|
-    puts "#{index + 1}. Book -"
-    display_book_details(book, book.label)
-  end
-end
-
 def list_all_games(games)
   puts 'Listing all games:'
   games.each_with_index do |game, index|
@@ -208,24 +223,12 @@ def list_authors(authors)
   end
 end
 
-def list_labels(labels)
-  puts 'Listing all labels:'
-  labels.each do |label|
-    puts label.title
-    puts label.color
-  end
-end
 # List methods  [ END]...........................
 
 # Display methods  [ START]......................
 def display_item(index, item)
   puts "#{index}. #{item.class} -"
   display_item_details(item)
-end
-
-def display_book(index, book)
-  puts "#{index}. Book -"
-  display_book_details(book, book.label)
 end
 
 def display_item_details(item)
@@ -238,19 +241,6 @@ def display_item_details(item)
     display_game_details(item)
   else
     puts 'No additional information available.'
-  end
-end
-
-def display_book_details(book, label)
-  puts "Author: #{book.author.name || 'No Author'}"
-  puts "Publisher: #{book.publisher || 'No Publisher'}"
-  puts "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
-  puts "Publish Date: #{book.publish_date || 'No Publish Date'}"
-  if label
-    puts "Label: #{label.title}"
-    puts "Color: #{label.color}"
-  else
-    puts 'Label: No Label'
   end
 end
 
@@ -284,7 +274,7 @@ loop do
   when 5
     list_all_music_albums(music_albums)
   when 6
-    list_all_books(books)
+    list_all_books(books, labels)
   when 7
     list_all_games(games)
   when 8
@@ -303,3 +293,5 @@ end
 # Load genres and albums from JSON files
 genres = load_genres
 music_albums = load_music_albums(genres)
+labels = load_labels
+books = load_books(labels)
