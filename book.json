@@ -47,5 +47,12 @@
     "cover_state": false,
     "publish_date": "2018-09-12",
     "label": "bookofjames"
+  },
+  {
+    "author": "sdsd",
+    "publisher": "sss",
+    "cover_state": true,
+    "publish_date": "2020-12-12",
+    "label": "tetete"
   }
 ]
