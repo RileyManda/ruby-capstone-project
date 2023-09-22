@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "Song1",
+      "genre_name": "genre1"
+    }
+  }
+]
