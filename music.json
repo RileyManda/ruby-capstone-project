@@ -1,29 +1,3 @@
 [
-  {
-    "id": 1,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": true,
-      "album_name": "sdsd",
-      "genre_name": "sss"
-    }
-  },
-  {
-    "id": 2,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": true,
-      "album_name": "album2",
-      "genre_name": "genre2"
-    }
-  },
-  {
-    "id": 3,
-    "album": {
-      "can_be_archived": false,
-      "on_spotify": true,
-      "album_name": "sdsd",
-      "genre_name": "sss"
-    }
-  }
+
 ]

@@ -10,8 +10,13 @@ class WriteMusic
     end
 
     json_file_path = 'genre.json'
-
+unless File.exist?('genre.json')
+      File.open('genre.json', 'w') do |file|
+        file.puts '[]'
+      end
+    end
     File.write(json_file_path, JSON.pretty_generate(genre_data))
+     puts 'Music albums saved successfully.'
   end
 
   def self.save_music_albums(music_albums)
