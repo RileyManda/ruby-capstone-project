@@ -1,8 +1,9 @@
-class MusicAlbum
+class MusicAlbum < Item
   attr_accessor :can_be_archived, :on_spotify, :album_name, :genre
   attr_reader :id
 
   def initialize(_id, album_name, on_spotify, can_be_archived, genre)
+    super()
     @id = generate_random_id
     @can_be_archived = can_be_archived
     @on_spotify = on_spotify
