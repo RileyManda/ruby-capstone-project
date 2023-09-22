@@ -80,9 +80,6 @@ def load_books_details(book_data, _labels)
   publish_date = book_data['publish_date']
   label = extract_label(book_data['label'])
   id = SecureRandom.uuid
-  puts "Books: Author=#{author},
-   Publisher=#{publisher}, Cover state=#{cover_state}, Date=#{publish_date}, Label=#{label}"
-
   Book.new(id, author, publisher, cover_state, publish_date, label)
 end
 
