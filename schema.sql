@@ -23,22 +23,27 @@ CREATE TABLE item (
 -- create table music_album
 
 CREATE TABLE music_album (
-    id SERIAL PRIMARY KEY,
-    can_be_archived BOOLEAN(255) NOT NULL,
-    on_spotify BOOLEAN,
-    item_id INT REFERENCES item(id)
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  publish_date DATE,
+  on_spotify BOOLEAN,
+  archived BOOLEAN,
+  genre_id INT REFERENCES genre(id),
+  author_id INT REFERENCES author(id),
+  label_id INT REFERENCES label(id)
 );
 
-ALTER TABLE item ADD CONSTRAINT unique_item UNIQUE (id);
 
 -- create table books
 
 CREATE TABLE book (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    publisher VARCHAR(255),
-    cover_state VARCHAR(255),
-    publish_date DATE,
-    FOREIGN KEY (id) REFERENCES item(id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	publisher VARCHAR(100),
+	cover_state VARCHAR(100)
+	publish_date  DATE
+	archived Boolean
+	genre_id INT REFERENCES genre(id),
+  	author_id INT REFERENCES author(id),
+  	label_id INT REFERENCES label(id),
 );
 
 -- create table labels
@@ -52,10 +57,14 @@ CREATE TABLE label (
 -- create table games
 
 CREATE TABLE game (
-    id INT PRIMARY KEY,
-    last_played_at TIMESTAMP,
-    multiplayer BOOLEAN,
-    FOREIGN KEY (id) REFERENCES item(id)
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  archived BOOLEAN,
+  multiplayer BOOLEAN,
+  publish_date DATE,
+  last_played_at DATE,
+  genre_id INT REFERENCES genre(id),
+  author_id INT REFERENCES author(id),
+  label_id INT REFERENCES label(id)
 );
 
 -- create table authors
@@ -65,5 +74,4 @@ CREATE TABLE author (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     item_id INT,
-    FOREIGN KEY (item_id) REFERENCES item(id)
 );
