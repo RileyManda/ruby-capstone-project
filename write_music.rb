@@ -92,7 +92,6 @@ def prompt_for_archiving_status
   result
 end
 
-
 def find_or_create_genre(genres, genre_name)
   genre = genres.find { |g| g.name == genre_name }
   unless genre
