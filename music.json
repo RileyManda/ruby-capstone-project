@@ -4,8 +4,8 @@
     "album": {
       "can_be_archived": false,
       "on_spotify": false,
-      "album_name": "Album1",
-      "genre_name": "Rock"
+      "album_name": "test1",
+      "genre_name": "genre1"
     }
   }
 ]
