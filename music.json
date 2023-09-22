@@ -7,5 +7,32 @@
       "album_name": "Song1",
       "genre_name": "genre1"
     }
+  },
+  {
+    "id": 2,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "hiphop",
+      "genre_name": "hiphopfest"
+    }
+  },
+  {
+    "id": 3,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "album12",
+      "genre_name": "genre12"
+    }
+  },
+  {
+    "id": 4,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "album2",
+      "genre_name": "genre12"
+    }
   }
 ]
