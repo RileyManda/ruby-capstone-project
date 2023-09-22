@@ -1,7 +1,8 @@
 <a name="readme-top"></a>
 
 <div align="center">
-
+ <img src="app-logo.png" alt="logo" width="140"  height="auto" />
+  <br/>
   <h1><b>RUBY CAPSTONE PROJECT</b></h1>
 
 </div>
@@ -149,12 +150,17 @@ If you like this project you can share this project to your friend
 
 We would like to express my sincere gratitude to [Microverse](https://github.com/microverseinc), the dedicated reviewers, and collaborators. Your unwavering support, feedback, and collaborative efforts have played an immense role in making this journey a resounding success. I am truly grateful for your contributions and for being an integral part of my achievements. Thank you for your continued support.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p
+ATTRIBUTION
 
-<!-- LICENSE -->
+👥 Attribution <a name="attribution"></a>
+- ProjectLogo: [Svgrepo](https://www.svgrepo.com/)
+
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT]()) licensed.
+License:
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE.txt)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
