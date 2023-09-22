@@ -1,7 +1,8 @@
 <a name="readme-top"></a>
 
 <div align="center">
-
+ <img src="app-logo.png" alt="logo" width="140"  height="auto" />
+  <br/>
   <h1><b>RUBY CAPSTONE PROJECT</b></h1>
 
 </div>
@@ -17,9 +18,9 @@
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
-    - [🚀 Presentation Video](#Video)
     - [Install](#install)
     - [Usage](#usage)
+  - [🚀 Live Demo](#live-demo)
   - [👥 Author ](#-author-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -31,8 +32,8 @@
 
 # 📖 RUBY CAPSTONE PROJECT <a name="about-project"></a>
 
-**RUBY CAPSTONE PROJECT** 
-In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure. 
+**RUBY CAPSTONE PROJECT**
+In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -47,12 +48,12 @@ In this project, we created a console app that will help you to keep a record of
 
 ### Key Features <a name="key-features"></a>
 
-- **Built methods, classes and objects using Ruby**
-- **Create Books, Games, Genres, Music_Album, Authors, Label**
-- **List: Books, Games, Genres, Music_Album, Authors, Label**
-- **Able to preserve user data in json file**
-- **Testing: Classes && Methods**
-- **Create Tables in SQL**
+> - **Built methods, classes and objects using Ruby**
+> - **Create Books, Games, Genres, Music_Album, Authors, Label**
+> - **List: Books, Games, Genres, Music_Album, Authors, Label**
+> - **Able to preserve user data in json file**
+> - **Testing: Classes && Methods**
+> - **Create Tables in SQL**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,23 +93,25 @@ it will install the required gemfile for running the project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+ ## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live Demo](https://clipchamp.com/watch/EAwEXVLoGwG)
    ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+> List of collaborators to this project
 
-👤 **Author1**
+👤 **Rabaya**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/rabayarabu)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/rabaya-rabu-142721169/)
 
-👤 **Author2**
+👤 **Riley**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@RileyManda](https://github.com/RileyManda)
+- Twitter: [@rilecodez](https://twitter.com/rileycodez)
+- LinkedIn: [rileymanda](https://www.linkedin.com/in/rileymanda/)
 
-👤 **Author3**
+👤 **Diana**
 
 - GitHub: [@Github](https://github.com/DianaBeki)
 - Twitter: [@Twitter](https://twitter.com/home)
@@ -119,7 +122,7 @@ it will install the required gemfile for running the project
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-***Creating the user interfaces***
+> Create the user interfaces for the app
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,14 +148,19 @@ If you like this project you can share this project to your friend
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-We would like to thank Microverse for this project
+We would like to express my sincere gratitude to [Microverse](https://github.com/microverseinc), the dedicated reviewers, and collaborators. Your unwavering support, feedback, and collaborative efforts have played an immense role in making this journey a resounding success. I am truly grateful for your contributions and for being an integral part of my achievements. Thank you for your continued support.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p
+ATTRIBUTION
 
-<!-- LICENSE -->
+👥 Attribution <a name="attribution"></a>
+- ProjectLogo: [Svgrepo](https://www.svgrepo.com/)
+
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT]()) licensed.
+License:
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE.txt)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
