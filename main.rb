@@ -31,7 +31,7 @@ labels_reader = ReadFile.new('label.json')
 books_reader = ReadFile.new('book.json')
 books = books_reader.read
 music_albums_reader = ReadFile.new('music.json')
-album_data = music_albums_reader.read
+music_albums_reader.read
 
 # Load genres from JSON file
 genres = LoadMusic.load_genres
@@ -190,7 +190,4 @@ end
 # Load books and labels from JSON files
 labels = load_labels
 books = load_books(labels)
-
 # Load genres and music from JSON files
-# genres = LoadMusic.load_genres
-# music_albums = LoadMusic.load_music_album(album_data, genres)
