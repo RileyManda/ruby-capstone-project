@@ -70,5 +70,14 @@
       "album_name": "test2",
       "genre_name": "test2"
     }
+  },
+  {
+    "id": 9,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": true,
+      "album_name": "sdsd",
+      "genre_name": "sss"
+    }
   }
 ]

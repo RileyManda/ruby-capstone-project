@@ -22,5 +22,9 @@
   {
     "id": 6,
     "genre_name": "test2"
+  },
+  {
+    "id": 7,
+    "genre_name": "sss"
   }
 ]
