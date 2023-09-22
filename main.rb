@@ -30,24 +30,10 @@ music_albums = music_albums_reader.read
 labels_reader = ReadFile.new('label.json')
 books_reader = ReadFile.new('book.json')
 books = books_reader.read
-# adding game   [START]......................................................................
-def add_game(games, items)
-  puts 'Adding a new game...'
-  print 'Enter title: '
-  title = gets.chomp
-  print 'Enter description: '
-  description = gets.chomp
-  print 'Enter last played date (YYYY-MM-DD): '
-  last_played_at = Date.parse(gets.chomp)
-  game = Game.new(title: title, description: description, last_played_at: last_played_at)
-  games << game
-  items << game
-  puts 'Game added successfully.'
-end
 
-# adding game   [END]........................................................................................
+# # adding game   [END]........................................................................................
 
-# save and load book [Start]
+# # save and load book [Start]
 
 def save_labels(labels)
   label_data = labels.map do |label|
@@ -137,13 +123,6 @@ def list_all_items(items)
   end
 end
 
-def list_all_games(games)
-  puts 'Listing all games:'
-  games.each_with_index do |game, index|
-    display_game(index + 1, game)
-  end
-end
-
 def list_authors(authors)
   puts 'Listing all authors:'
   authors.each do |author|
@@ -172,19 +151,6 @@ def display_item_details(item)
   end
 end
 
-def display_game(index, game)
-  puts "#{index}. Game -"
-  display_game_details(game)
-end
-
-def display_game_details(game)
-  puts "Title: #{game.title}"
-  puts "Description: #{game.description}"
-  puts "Last Played: #{game.last_played_at}"
-end
-
-# Display methods  [ END].....................
-
 loop do
   app.display_options
   print 'Select an option: '
@@ -194,7 +160,7 @@ loop do
   when 1
     add_book(books, items, authors, labels)
   when 2
-    add_game(games, items)
+    app.add_game(games, items)
   when 3
     add_music_album(music_albums, items, genres)
   when 4
@@ -202,7 +168,7 @@ loop do
   when 5
     list_all_books(books, labels)
   when 6
-    list_all_games(games)
+    app.list_all_games
   when 7
     list_genres(genres)
   when 8

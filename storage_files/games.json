@@ -1,42 +1,22 @@
 [
   {
-    "title": "ddd",
-    "description": "aax",
-    "last_played_at": "2020-12-11"
+    "title": "Chess",
+    "description": "Body game",
+    "last_played_at": "2023-08-07"
   },
   {
-    "title": "ddd",
-    "description": "ssaaa",
-    "last_played_at": "2020-12-11"
+    "title": "Bowling",
+    "description": "To be played by 2",
+    "last_played_at": "2020-07-04"
   },
   {
-    "title": "Cover",
-    "description": "Under",
-    "last_played_at": "2023-08-13"
+    "title": "Pool",
+    "description": "To be played by 2",
+    "last_played_at": "2017-08-09"
   },
   {
-    "title": "dd",
-    "description": "aaa",
-    "last_played_at": "2020-03-07"
-  },
-  {
-    "title": "fff",
-    "description": "asss",
-    "last_played_at": "2021-07-04"
-  },
-  {
-    "title": "s",
-    "description": "aa",
-    "last_played_at": "2020-01-03"
-  },
-  {
-    "title": "Temple",
-    "description": "run",
-    "last_played_at": "2017-03-02"
-  },
-  {
-    "title": "aaa",
-    "description": "cc",
-    "last_played_at": "2013-03-07"
+    "title": "Football",
+    "description": "To be played by 30",
+    "last_played_at": "2023-09-09"
   }
 ]
