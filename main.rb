@@ -12,6 +12,8 @@ require_relative 'genre'
 require_relative 'label'
 require_relative 'music_album'
 require_relative 'app'
+require_relative 'data_operation'
+
 app = App.new
 
 # Store your items
@@ -22,6 +24,8 @@ games = []
 genres = []
 labels = []
 authors = []
+
+@games = []
 
 genres_reader = ReadFile.new('genre.json')
 music_albums_reader = ReadFile.new('music.json')
