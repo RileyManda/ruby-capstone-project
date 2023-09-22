@@ -12,8 +12,6 @@ require_relative 'genre'
 require_relative 'label'
 require_relative 'music_album'
 require_relative 'app'
-require_relative 'data_operation'
-
 app = App.new
 
 # Store your items
@@ -24,79 +22,6 @@ games = []
 genres = []
 labels = []
 authors = []
-
-
-@games = []
-
-# adding book and label methods [START]...............................
-def add_book(books, items, authors, labels)
-  author = find_or_create_author(authors)
-  publisher = input_publisher
-  cover_state = input_cover_state
-  publish_date = input_publish_date
-  label = find_or_create_label(labels)
-
-  book = Book.new(author, publisher, cover_state, publish_date, label)
-
-  items << book
-  books << book
-  labels << label
-
-  puts 'Book added successfully.'
-end
-
-def find_or_create_author(authors)
-  puts "Enter author's name: "
-  author_name = gets.chomp
-  author = authors.find { |a| a.name == author_name }
-  author ||= Author.new(author_name)
-  authors << author
-  author
-end
-
-def input_publisher
-  print 'Enter publisher: '
-  gets.chomp
-end
-
-def input_cover_state
-  print 'Enter cover state (true or false): '
-  gets.chomp.downcase == 'true'
-end
-
-def input_publish_date
-  print 'Enter publish date (YYYY-MM-DD): '
-  Date.parse(gets.chomp)
-end
-
-def find_or_create_label(labels)
-  print 'Enter label: '
-  title = gets.chomp
-  print 'Enter color: '
-  color = gets.chomp
-  label = labels.find { |b| b.title == title && b.color == color }
-  label ||= Label.new(title, color)
-  label
-end
-# adding book and label methods [END]...............................
-
-# adding game   [START]...............................
-
-# adding music_album   [START]......................
-def add_music_album(music_albums, items, genres)
-  puts 'Adding a new music album...'
-  print 'Enter album name: '
-  album_name = gets.chomp
-  print 'Is the album on Spotify? (true or false): '
-  on_spotify = gets.chomp.downcase == 'true'
-  print 'Can the album be archived? (true or false): '
-  can_be_archived = gets.chomp.downcase == 'true'
-  print 'Enter genre: '
-  genre_name = gets.chomp.capitalize
-  genre = genres.find { |g| g.name == genre_name }
-  unless genre
-    genre = Genre.new(genres.size + 1, genre_name)
-    genres << genre
 
 genres_reader = ReadFile.new('genre.json')
 music_albums_reader = ReadFile.new('music.json')
@@ -130,7 +55,6 @@ def save_labels(labels)
       'title' => label.title || 'No Label',
       'color' => label.color || 'No Label'
     }
-
   end
 
   File.write('label.json', JSON.pretty_generate(label_data))
@@ -219,16 +143,10 @@ def list_all_items(items)
   end
 end
 
-def list_genres(genres)
-  puts 'Listing all genres:'
-  genres.each do |genre|
-    puts genre.name
-
 def list_all_games(games)
   puts 'Listing all games:'
   games.each_with_index do |game, index|
     display_game(index + 1, game)
-
   end
 end
 
@@ -260,33 +178,6 @@ def display_item_details(item)
   end
 end
 
-def display_music_album(index, album)
-  puts "#{index}. Music Album -"
-  display_music_album_details(album)
-end
-
-def display_music_album_details(album)
-  puts "Album Name: #{album.album_name || 'No Album Name'}"
-  puts "Can Be Archived: #{album.can_be_archived? ? 'Yes' : 'No'}"
-  puts "On Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
-  puts "Genre: #{album.genre.name || 'No Genre'}"
-end
-
-def display_book_details(book, label)
-  puts "Author: #{book.author.name || 'No Author'}"
-  puts "Publisher: #{book.publisher || 'No Publisher'}"
-  puts "Cover State: #{book.cover_state ? 'Good' : 'Bad'}"
-  puts "Publish Date: #{book.publish_date || 'No Publish Date'}"
-  if label
-    puts "Label: #{label.title}"
-    puts "Color: #{label.color}"
-  else
-    puts 'Label: No Label'
-  end
-end
-
-# Display methods  [ START]......................
-
 def display_game(index, game)
   puts "#{index}. Game -"
   display_game_details(game)
@@ -309,7 +200,7 @@ loop do
   when 1
     add_book(books, items, authors, labels)
   when 2
-    app.add_game(games, items)
+    add_game(games, items)
   when 3
     add_music_album(music_albums, items, genres)
   when 4
@@ -319,7 +210,7 @@ loop do
   when 6
     list_all_books(books, labels)
   when 7
-    app.list_all_games
+    list_all_games(games)
   when 8
     list_genres(genres)
   when 9
@@ -332,6 +223,7 @@ loop do
   else
     puts 'Invalid choice. Please select a valid option.'
   end
+end
 
 # Load books and labels from JSON files
 labels = load_labels
@@ -340,4 +232,3 @@ books = load_books(labels)
 # Load genres and music from JSON files
 genres = LoadMusic.load_genres
 music_albums = LoadMusic.load_music_albums(genres)
-end

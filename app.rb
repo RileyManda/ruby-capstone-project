@@ -19,6 +19,7 @@ class App
     @sources = []
     @labels = []
 
+    @games = []
     load_games
   end
 
