@@ -2,25 +2,5 @@
   {
     "id": 1,
     "genre_name": "genre1"
-  },
-  {
-    "id": 2,
-    "genre_name": "genre2"
-  },
-  {
-    "id": 3,
-    "genre_name": "genre3"
-  },
-  {
-    "id": 4,
-    "genre_name": "ff"
-  },
-  {
-    "id": 5,
-    "genre_name": "d"
-  },
-  {
-    "id": 6,
-    "genre_name": "genre4"
   }
 ]
