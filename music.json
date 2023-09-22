@@ -88,5 +88,14 @@
       "album_name": "testing9",
       "genre_name": "genre9"
     }
+  },
+  {
+    "id": 11,
+    "album": {
+      "can_be_archived": true,
+      "on_spotify": true,
+      "album_name": "Test",
+      "genre_name": "testing"
+    }
   }
 ]
