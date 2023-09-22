@@ -56,10 +56,7 @@ def save_labels(labels)
       'color' => label.color || 'No Label'
     }
   end
-
   File.write('label.json', JSON.pretty_generate(label_data))
-
-  puts 'Labels saved successfully.'
 end
 
 def load_books(labels)
