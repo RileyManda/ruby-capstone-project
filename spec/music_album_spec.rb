@@ -78,13 +78,27 @@ RSpec.describe MusicAlbum do
   end
 
   it 'loads music albums correctly from an existing "music.json" file' do
-    File.write('music.json',
-               '[{"id": 1, "album": {"can_be_archived": false, "on_spotify": false, "album_name": "Album1", "genre_name": "Rock"}}]')
+    json_content = <<~JSON
+      [
+        {
+          "id": 1,
+          "album": {
+            "can_be_archived": false,
+            "on_spotify": false,
+            "album_name": "Album1",
+            "genre_name": "Rock"
+          }
+        }
+      ]
+    JSON
+
+    File.write('music.json', json_content)
     loaded_music_albums = LoadMusic.load_music_albums([])
     expect(loaded_music_albums).to all(be_a(MusicAlbum))
     expect(loaded_music_albums.map(&:album_name)).to include('Album1')
     File.delete('music.json')
   end
+
   it 'loads music albums correctly from an existing "music.json" file' do
     valid_json_content = <<~JSON
       [
@@ -105,5 +119,16 @@ RSpec.describe MusicAlbum do
     expect(loaded_music_albums).to all(be_a(MusicAlbum))
     expect(loaded_music_albums.map(&:album_name)).to include('Album1')
     File.delete('music.json')
+  end
+  it 'returns an empty array when "genre.json" doesn\'t exist' do
+    expect(File).to receive(:exist?).with('genre.json').and_return(false)
+    loaded_genres = LoadMusic.load_genres
+    expect(loaded_genres).to be_empty
+  end
+
+  it 'returns an empty array when "music.json" doesn\'t exist' do
+    expect(File).to receive(:exist?).with('music.json').and_return(false)
+    loaded_music_albums = LoadMusic.load_music_albums([])
+    expect(loaded_music_albums).to be_empty
   end
 end
