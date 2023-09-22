@@ -28,14 +28,13 @@ class App
     puts '1. Add a new book'
     puts '2. Add a new game'
     puts '3. Add a new music album'
-    puts '4. List all items'
-    puts '5. List all music albums'
-    puts '6. List all books'
-    puts '7. List of games'
-    puts '8. List all genres (e.g Comedy, Thriller)'
-    puts '9. List all authors (e.g. Stephen King)'
-    puts '10. List all labels (e.g. Gift', 'New)'
-    puts '11. Quit'
+    puts '4. List all music albums'
+    puts '5. List all books'
+    puts '6. List of games'
+    puts '7. List all genres (e.g Comedy, Thriller)'
+    puts '8. List all authors (e.g. Stephen King)'
+    puts '9. List all labels (e.g. Gift', 'New)'
+    puts '10. Quit'
   end
 
   def add_game(games, items)
@@ -76,14 +75,4 @@ class App
       puts "#{index + 1} '#{game['title']}'"
     end
   end
-  # def display_game(index, game)
-  #   puts "#{index}. Game -"
-  #   display_game_details(game)
-  # end
-
-  # def display_game_details(game)
-  #   puts "Title: #{game.title}"
-  #   puts "Description: #{game.description}"
-  #   puts "Last Played: #{game.last_played_at}"
-  # end
 end

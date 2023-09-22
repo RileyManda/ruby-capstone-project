@@ -204,20 +204,18 @@ loop do
   when 3
     add_music_album(music_albums, items, genres)
   when 4
-    list_all_items(items)
-  when 5
     list_all_music_albums(music_albums)
-  when 6
+  when 5
     list_all_books(books, labels)
-  when 7
+  when 6
     list_all_games(games)
-  when 8
+  when 7
     list_genres(genres)
-  when 9
+  when 8
     list_authors(authors)
-  when 10
+  when 9
     list_labels(labels)
-  when 11
+  when 10
     puts 'Exiting the app. Goodbye!'
     break
   else

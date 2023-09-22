@@ -33,5 +33,19 @@
     "cover_state": true,
     "publish_date": "2023-12-12",
     "label": "book1"
+  },
+  {
+    "author": "sds",
+    "publisher": "ss",
+    "cover_state": false,
+    "publish_date": "2022-12-12",
+    "label": "test"
+  },
+  {
+    "author": "book12",
+    "publisher": "james",
+    "cover_state": false,
+    "publish_date": "2018-09-12",
+    "label": "bookofjames"
   }
 ]
