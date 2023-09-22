@@ -17,9 +17,9 @@
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
-    -[🚀 Live Demo](#live-demo)
     - [Install](#install)
     - [Usage](#usage)
+  - [🚀 Live Demo](#live-demo)
   - [👥 Author ](#-author-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -47,12 +47,12 @@ In this project, we created a console app that will help you to keep a record of
 
 ### Key Features <a name="key-features"></a>
 
-- **Built methods, classes and objects using Ruby**
-- **Create Books, Games, Genres, Music_Album, Authors, Label**
-- **List: Books, Games, Genres, Music_Album, Authors, Label**
-- **Able to preserve user data in json file**
-- **Testing: Classes && Methods**
-- **Create Tables in SQL**
+> - **Built methods, classes and objects using Ruby**
+> - **Create Books, Games, Genres, Music_Album, Authors, Label**
+> - **List: Books, Games, Genres, Music_Album, Authors, Label**
+> - **Able to preserve user data in json file**
+> - **Testing: Classes && Methods**
+> - **Create Tables in SQL**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,7 +94,7 @@ it will install the required gemfile for running the project
 
  ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo](https://)
+- [Live Demo](https://clipchamp.com/watch/EAwEXVLoGwG)
    ## 👥 Authors <a name="authors"></a>
 
 > List of collaborators to this project
@@ -122,7 +122,7 @@ it will install the required gemfile for running the project
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-***Creating the user interfaces***
+> Create the user interfaces for the app
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
