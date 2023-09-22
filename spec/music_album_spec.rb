@@ -70,4 +70,10 @@ RSpec.describe MusicAlbum do
     genres = [genre1, genre2]
     expect { WriteMusic.save_genres(genres) }.not_to raise_error
   end
+
+  it 'loads genres correctly from an existing "genre.json" file' do
+    File.write('genre.json', '[{"id": 1, "genre_name": "Rock"}, {"id": 2, "genre_name": "Pop"}]')
+    expect(LoadMusic.load_genres).to all(be_a(Genre))
+    File.delete('genre.json')
+  end
 end
