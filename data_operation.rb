@@ -31,7 +31,6 @@ module SaveData
   def save()
     save_authors
     save_games
-    save_items
   end
 end
 

@@ -18,7 +18,6 @@ class App
     @authors = []
     @sources = []
     @labels = []
-
     @games = []
     load_games
   end

@@ -12,12 +12,6 @@ class WriteMusic
     json_file_path = 'genre.json'
 
     File.write(json_file_path, JSON.pretty_generate(genre_data))
-
-    puts 'Genres saved successfully.'
-  rescue JSON::GeneratorError => e
-    puts "Error generating JSON data for 'genre.json': #{e.message}"
-  rescue StandardError => e
-    puts "Error saving genres: #{e.message}"
   end
 
   def self.save_music_albums(music_albums)
@@ -145,10 +139,4 @@ def self.save_items(items)
   end
 
   File.write(json_file_path, JSON.pretty_generate(items_data))
-
-  puts 'Items saved successfully.'
-rescue JSON::GeneratorError => e
-  puts "Error generating JSON data for 'items.json': #{e.message}"
-rescue StandardError => e
-  puts "Error saving items: #{e.message}"
 end
