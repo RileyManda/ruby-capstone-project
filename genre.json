@@ -10,5 +10,17 @@
   {
     "id": 3,
     "genre_name": "genre12"
+  },
+  {
+    "id": 4,
+    "genre_name": "test"
+  },
+  {
+    "id": 5,
+    "genre_name": "ss"
+  },
+  {
+    "id": 6,
+    "genre_name": "test2"
   }
 ]

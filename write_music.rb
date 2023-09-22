@@ -78,13 +78,20 @@ end
 
 def prompt_for_spotify_status
   print 'Is the album on Spotify? (true or false): '
-  gets.chomp.downcase == 'true'
+  input = gets.chomp.downcase
+  result = input == 'true'
+  puts "Debug: Input: #{input}, Result: #{result}"
+  result
 end
 
 def prompt_for_archiving_status
   print 'Can the album be archived? (true or false): '
-  gets.chomp.downcase == 'true'
+  input = gets.chomp.downcase
+  result = input == 'true'
+  puts "Debug: Input: #{input}, Result: #{result}"
+  result
 end
+
 
 def find_or_create_genre(genres, genre_name)
   genre = genres.find { |g| g.name == genre_name }

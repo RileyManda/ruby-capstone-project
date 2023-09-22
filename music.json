@@ -34,5 +34,41 @@
       "album_name": "album2",
       "genre_name": "genre12"
     }
+  },
+  {
+    "id": 5,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "test",
+      "genre_name": "test"
+    }
+  },
+  {
+    "id": 6,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "sdsd",
+      "genre_name": "ss"
+    }
+  },
+  {
+    "id": 7,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": false,
+      "album_name": "sss",
+      "genre_name": "ss"
+    }
+  },
+  {
+    "id": 8,
+    "album": {
+      "can_be_archived": true,
+      "on_spotify": true,
+      "album_name": "test2",
+      "genre_name": "test2"
+    }
   }
 ]
