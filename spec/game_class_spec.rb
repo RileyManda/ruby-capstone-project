@@ -20,13 +20,13 @@ describe Game do
     }
   end
   subject { described_class.new(options) }
-  describe "#can_be_archived?" do
-    context "when parent cannot be archived" do
-      it "returns false if the game has been played recently" do
+  describe '#can_be_archived?' do
+    context 'when parent cannot be archived' do
+      it 'returns false if the game has been played recently' do
         options[:last_played_at] = Time.now # Game played just now
         expect(subject.can_be_archived?).to eq(false)
       end
-      it "returns false if the parent cannot be archived" do
+      it 'returns false if the parent cannot be archived' do
         options[:can_be_archived] = false
         expect(subject.can_be_archived?).to eq(false)
       end
