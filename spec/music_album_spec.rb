@@ -76,4 +76,34 @@ RSpec.describe MusicAlbum do
     expect(LoadMusic.load_genres).to all(be_a(Genre))
     File.delete('genre.json')
   end
+
+  it 'loads music albums correctly from an existing "music.json" file' do
+    File.write('music.json',
+               '[{"id": 1, "album": {"can_be_archived": false, "on_spotify": false, "album_name": "Album1", "genre_name": "Rock"}}]')
+    loaded_music_albums = LoadMusic.load_music_albums([])
+    expect(loaded_music_albums).to all(be_a(MusicAlbum))
+    expect(loaded_music_albums.map(&:album_name)).to include('Album1')
+    File.delete('music.json')
+  end
+  it 'loads music albums correctly from an existing "music.json" file' do
+    valid_json_content = <<~JSON
+      [
+        {
+          "id": 1,
+          "album": {
+            "can_be_archived": false,
+            "on_spotify": false,
+            "album_name": "Album1",
+            "genre_name": "Rock"
+          }
+        }
+      ]
+    JSON
+
+    File.write('music.json', valid_json_content)
+    loaded_music_albums = LoadMusic.load_music_albums([])
+    expect(loaded_music_albums).to all(be_a(MusicAlbum))
+    expect(loaded_music_albums.map(&:album_name)).to include('Album1')
+    File.delete('music.json')
+  end
 end
