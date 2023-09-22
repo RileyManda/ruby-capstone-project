@@ -17,7 +17,7 @@
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
-    - [🚀 Presentation Video](#Video)
+    -[🚀 Live Demo](#live-demo)
     - [Install](#install)
     - [Usage](#usage)
   - [👥 Author ](#-author-)
@@ -31,8 +31,8 @@
 
 # 📖 RUBY CAPSTONE PROJECT <a name="about-project"></a>
 
-**RUBY CAPSTONE PROJECT** 
-In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure. 
+**RUBY CAPSTONE PROJECT**
+In this project, we created a console app that will help you to keep a record of different types of things you own: books, music albums, and games. Everything will be based on the UML class diagram. The data will be stored in JSON files but we also prepared a database with tables structure analogical to our program's class structure.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -92,9 +92,12 @@ it will install the required gemfile for running the project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+ ## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live Demo](https://)
    ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+> List of collaborators to this project
 
 👤 **Author1**
 
