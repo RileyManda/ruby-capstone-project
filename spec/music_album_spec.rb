@@ -66,7 +66,7 @@ RSpec.describe MusicAlbum do
     ]
     expect { WriteMusic.save_music_albums(music_albums) }.not_to raise_error
   end
-  it 'saves genres to the JSON file' do
+  it 'should save genre to genre.json' do
     genres = [genre1, genre2]
     expect { WriteMusic.save_genres(genres) }.not_to raise_error
   end
