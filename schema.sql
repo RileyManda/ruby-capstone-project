@@ -1,69 +1,55 @@
--- create database cataglog
+-- create database catalog
 CREATE DATABASE IF NOT EXISTS catalog;
 
 -- Create the Genre table
 CREATE TABLE genre (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL
 );
 
--- Create the Item table
-CREATE TABLE item (
-    id SERIAL PRIMARY KEY,
-    genre VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    source VARCHAR(255) NOT NULL,
-    label VARCHAR(255) NOT NULL,
-    publish_date DATE(255) NOT NULL,
-    archived BOOLEAN(255) NOT NULL,
-    can_be_archived BOOLEAN(255) NOT NULL,
-    genre_id INT REFERENCES genre(id)
-);
-
--- create table music_album
-
+-- Create table music_album
 CREATE TABLE music_album (
     id SERIAL PRIMARY KEY,
-    can_be_archived BOOLEAN(255) NOT NULL,
-    on_spotify BOOLEAN,
-    item_id INT REFERENCES item(id)
-);
-
-ALTER TABLE item ADD CONSTRAINT unique_item UNIQUE (id);
-
--- create table books
-
-CREATE TABLE book (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    publisher VARCHAR(255),
-    cover_state VARCHAR(255),
     publish_date DATE,
-    FOREIGN KEY (id) REFERENCES item(id)
+    on_spotify BOOLEAN,
+    genre_id INT REFERENCES genre(id),
+    author VARCHAR(255) NOT NULL,
+    label VARCHAR(255) NOT NULL
 );
 
--- create table labels
+-- Create table books
+CREATE TABLE book (
+    id SERIAL PRIMARY KEY,
+    publisher VARCHAR(100),
+    cover_state VARCHAR(100),
+    publish_date DATE,
+    genre_id INT REFERENCES genre(id),
+    author VARCHAR(255) NOT NULL,
+    label VARCHAR(255) NOT NULL
+);
 
+-- Create table labels
 CREATE TABLE label (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title VARCHAR(255),
-    color VARCHAR(255),
-)
-
--- create table games
-
-CREATE TABLE game (
-    id INT PRIMARY KEY,
-    last_played_at TIMESTAMP,
-    multiplayer BOOLEAN,
-    FOREIGN KEY (id) REFERENCES item(id)
+    color VARCHAR(255)
 );
 
--- create table authors
+-- Create table games
+CREATE TABLE game (
+    id SERIAL PRIMARY KEY,
+    archived BOOLEAN,
+    multiplayer BOOLEAN,
+    publish_date DATE,
+    last_played_at DATE,
+    genre_id INT REFERENCES genre(id),
+    author VARCHAR(255) NOT NULL,
+    label VARCHAR(255) NOT NULL
+);
 
+-- Create table authors
 CREATE TABLE author (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    item_id INT,
-    FOREIGN KEY (item_id) REFERENCES item(id)
+    last_name VARCHAR(30) NOT NULL
 );
