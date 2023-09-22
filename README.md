@@ -99,19 +99,18 @@ it will install the required gemfile for running the project
 
 > List of collaborators to this project
 
-👤 **Author1**
+👤 **Rabaya**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/rabayarabu)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/rabaya-rabu-142721169/)
 
-👤 **Author2**
+👤 **Riley**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@RileyManda](https://github.com/RileyManda)
+- Twitter: [@rilecodez](https://twitter.com/rileycodez)
+- LinkedIn: [rileymanda](https://www.linkedin.com/in/rileymanda/)
 
-👤 **Author3**
+👤 **Diana**
 
 - GitHub: [@Github](https://github.com/DianaBeki)
 - Twitter: [@Twitter](https://twitter.com/home)
