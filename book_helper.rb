@@ -46,12 +46,11 @@ def add_book(books, items, authors, labels)
   author = authors.find { |a| a.name == author_name }
   author ||= Author.new(author_name)
   authors << author
-
-  # print 'Enter label title: '
-  # title = gets.chomp
-  # print 'Enter label color: '
-  # color = gets.chomp
-
+  # Prompt for label title and color
+  print 'Enter label title: '
+  title = gets.chomp
+  print 'Enter label color: '
+  color = gets.chomp
   label = find_or_create_label(labels, title, color)
   id = Random.rand(1..100)
   book_data = {

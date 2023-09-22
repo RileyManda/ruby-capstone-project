@@ -26,5 +26,12 @@
     "cover_state": false,
     "publish_date": "2022-12-12",
     "label": "book1"
+  },
+  {
+    "author": "rabu",
+    "publisher": "rahi",
+    "cover_state": true,
+    "publish_date": "2023-12-12",
+    "label": "book1"
   }
 ]
