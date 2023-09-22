@@ -6,7 +6,6 @@ require_relative 'game_class'
 require_relative 'genre'
 require_relative 'label'
 require_relative 'music_album'
-require_relative 'item'
 
 class App
   def initialize

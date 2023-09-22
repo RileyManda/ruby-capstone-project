@@ -11,9 +11,6 @@ require_relative 'data_operation'
 
 app = App.new
 
-include SaveData
-include LoadData
-
 # Store your items
 items = []
 books = []
