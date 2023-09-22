@@ -332,7 +332,6 @@ loop do
   else
     puts 'Invalid choice. Please select a valid option.'
   end
-end
 
 # Load books and labels from JSON files
 labels = load_labels
@@ -341,3 +340,4 @@ books = load_books(labels)
 # Load genres and music from JSON files
 genres = LoadMusic.load_genres
 music_albums = LoadMusic.load_music_albums(genres)
+end
