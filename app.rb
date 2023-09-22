@@ -58,11 +58,11 @@ class App
       'description' => description,
       'last_played_at' => last_played_at
     }
-    File.write('./storage_files/games.json', JSON.pretty_generate(@games))
+    File.write('games.json', JSON.pretty_generate(@games))
   end
 
   def load_games
-    games_data = JSON.parse(File.read('./storage_files/games.json'))
+    games_data = JSON.parse(File.read('games.json'))
     @games = games_data
   rescue JSON::ParserError => e
     puts "Error parsing games.json: #{e.message}"

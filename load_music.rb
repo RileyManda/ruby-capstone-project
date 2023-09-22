@@ -2,6 +2,7 @@ require 'json'
 
 class LoadMusic
   # load genres
+
   def self.load_genres
     return [] unless File.exist?('genre.json')
 
@@ -15,21 +16,6 @@ class LoadMusic
     end
   rescue JSON::ParserError => e
     puts "Error parsing 'genre.json': #{e.message}"
-    []
-  end
-
-  # load music albums
-  def self.load_music_albums(genres)
-    return [] unless File.exist?('music.json')
-
-    json_data = File.read('music.json')
-    music_albums_data = JSON.parse(json_data)
-
-    music_albums_data.map do |album_data|
-      load_music_album(album_data, genres)
-    end
-  rescue JSON::ParserError => e
-    puts "Error parsing 'music.json': #{e.message}"
     []
   end
 

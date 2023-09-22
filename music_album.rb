@@ -1,5 +1,6 @@
+require_relative 'item'
 class MusicAlbum < Item
-  attr_accessor :can_be_archived, :on_spotify, :album_name, :genre
+  attr_accessor :on_spotify, :album_name, :genre
   attr_reader :id
 
   def initialize(_id, album_name, on_spotify, can_be_archived, genre)
@@ -12,7 +13,7 @@ class MusicAlbum < Item
   end
 
   def can_be_archived?
-    @can_be_archived
+    super && @on_spotify
   end
 
   def generate_random_id
