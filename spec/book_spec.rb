@@ -2,7 +2,6 @@ require_relative '../book'
 require 'rspec'
 require 'date'
 
-
 RSpec.describe Book do
   let(:sample_book) do
     Book.new(
