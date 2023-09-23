@@ -1,4 +1,3 @@
-
 require_relative '../book'
 require 'rspec'
 require 'date'
@@ -10,7 +9,7 @@ RSpec.describe Book do
       '123',
       'John Doe',
       'Publisher XYZ',
-      'good', 
+      'good',
       Date.today,
       'Best Sellers'
     )
