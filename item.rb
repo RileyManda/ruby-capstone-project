@@ -11,9 +11,23 @@ class Item
     @can_be_archived = options[:can_be_archived]
     @genre_id = options[:genre_id]
   end
+  def genre=(genre)
+    @genre = genre
+    @genre.items.push(self) unless @genre.items.include?(self)
+  end
 
-  def can_be_archived?
-    ten_years_ago = Date.today - (10 * 365)
-    @publish_date <= ten_years_ago
+  def label=(label)
+    @label = label
+    @label.items.push(self) unless @label.items.include?(self)
+  end
+
+  def author=(author)
+    @author = author
+    @author.items.push(self) unless @author.items.include?(self)
+  end
+  def move_to_archive
+    if can_be_archived?
+      @archived = true
+    end
   end
 end

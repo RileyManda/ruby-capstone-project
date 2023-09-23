@@ -23,5 +23,40 @@
     "id": 231,
     "album_name": "sdsds",
     "genre": "sss"
+  },
+  {
+    "id": 621,
+    "album_name": "sdfsaf",
+    "genre": "dsffasdf"
+  },
+  {
+    "id": 192,
+    "album_name": "sdfsagfa",
+    "genre": "sdfgdg"
+  },
+  {
+    "id": 192,
+    "album_name": "sdfsagfa",
+    "genre": "sdfgdg"
+  },
+  {
+    "id": 224,
+    "album_name": "dsfjkadhfgjk",
+    "genre": "sjdfjashj"
+  },
+  {
+    "id": "c66cbf74-19a1-4e8c-8ea2-465fcb5188b0",
+    "author": "rabu",
+    "publisher": "saif",
+    "cover_state": true,
+    "publish_date": "2023-12-12",
+    "label": "book1"
+  },
+  {
+  },
+  {
+    "id": 404,
+    "album_name": "music4",
+    "genre": "music4"
   }
 ]

@@ -7,5 +7,41 @@
       "album_name": "test1",
       "genre_name": "genre1"
     }
+  },
+  {
+    "id": 2,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": true,
+      "album_name": "sdfsaf",
+      "genre_name": "dsffasdf"
+    }
+  },
+  {
+    "id": 3,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": true,
+      "album_name": "sdfsagfa",
+      "genre_name": "sdfgdg"
+    }
+  },
+  {
+    "id": 4,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": true,
+      "album_name": "dsfjkadhfgjk",
+      "genre_name": "sjdfjashj"
+    }
+  },
+  {
+    "id": 5,
+    "album": {
+      "can_be_archived": false,
+      "on_spotify": true,
+      "album_name": "music4",
+      "genre_name": "music4"
+    }
   }
 ]

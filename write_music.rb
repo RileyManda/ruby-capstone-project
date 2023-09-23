@@ -136,11 +136,24 @@ def self.save_items(items)
   end
 
   items_data += items.map do |item|
-    {
-      'id' => item.id,
-      'album_name' => item.album_name,
-      'genre' => item.genre.name
-    }
+    if item.is_a?(MusicAlbum)
+      {
+        'id' => item.id,
+        'album_name' => item.album_name,
+        'genre' => item.genre.name
+      }
+    elsif item.is_a?(Book)
+      {
+        'id' => item.id,
+        'author' => item.author,
+        'publisher' => item.publisher,
+        'cover_state' => item.cover_state,
+        'publish_date' => item.publish_date,
+        'label' => item.label.title
+      }
+    else
+      {}
+    end
   end
 
   File.write(json_file_path, JSON.pretty_generate(items_data))
