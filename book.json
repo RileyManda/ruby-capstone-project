@@ -1,0 +1,37 @@
+[
+  {
+    "author": "Book1",
+    "publisher": "rabaya",
+    "cover_state": true,
+    "publish_date": "2022-12-12",
+    "label": "science"
+  },
+  {
+    "author": "saif",
+    "publisher": "rabu",
+    "cover_state": false,
+    "publish_date": "2023-12-12",
+    "label": "book1"
+  },
+  {
+    "author": "abcde",
+    "publisher": "abcde",
+    "cover_state": true,
+    "publish_date": "2023-12-12",
+    "label": "book1"
+  },
+  {
+    "author": "rabu",
+    "publisher": "saif",
+    "cover_state": true,
+    "publish_date": "2023-12-12",
+    "label": "book1"
+  },
+  {
+    "author": "rabu",
+    "publisher": "rabu",
+    "cover_state": true,
+    "publish_date": "2023-12-12",
+    "label": "rabu"
+  }
+]
